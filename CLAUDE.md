@@ -8,3 +8,4 @@ Read `README.md` first. It holds the full context for this video: how it's built
 - **Test each step before moving on.** Show stills or a recording and wait for the user's go-ahead.
 - **No emoji in visual work.** Use Lucide icons and real brand marks (Simple Icons) instead.
 - Check layout with `STILLS=` before a full `npm run record`.
+- **Storytelling videos use ElevenLabs** for voices and sound effects (`scripts/elevenlabs.mjs`, key in the git-ignored `.env`). Only voice real, sourced quotes as characters' lines; put facts in on-screen captions.

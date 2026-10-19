@@ -1,0 +1,239 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>The Hugging Face incident</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@400;600;700&display=swap">
+<script src="story.js"></script>
+<style>
+/* 60 s story video, 1080x1350 (4:5). Agents speak, on-screen captions carry the facts.
+   Timeline: elements with data-on="a-b" get class "on" between a and b ms. Lines from story.js
+   (voice cues) show at the same time their audio plays. Smallest text 26px. */
+:root { --bg: #0f0f10; --tile: #1b1b1d; --tile-2: #252528; --edge: #2c2c30; --text: #f2efe9; --muted: #9a958c;
+  --sand: #f5c26b; --red: #ff5a5f; --hf: #ffd21e; --think: #b9a6ff; }
+html, body { margin: 0; background: var(--bg); }
+body { color: var(--text); font-family: Sora, sans-serif; display: grid; place-items: center; min-height: 100vh; }
+body.record { display: block; }
+.art { position: relative; width: 1080px; height: 1350px; overflow: hidden; background: var(--bg); }
+.ic { display: inline-block; width: 1em; height: 1em; flex: none; background: currentColor; -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+.mono { font-family: "IBM Plex Mono", monospace; }
+[data-on] { opacity: 0; transition: opacity .45s ease, transform .45s ease; }
+[data-on].on { opacity: 1; }
+.rise { transform: translateY(18px); }
+.rise.on { transform: none; }
+
+/* Header and captions */
+.top { position: absolute; left: 64px; right: 64px; top: 48px; display: flex; justify-content: space-between; align-items: baseline; }
+.top .mono { font: 500 26px "IBM Plex Mono", monospace; letter-spacing: .08em; color: var(--muted); }
+.sig { font: 400 46px Chewy, cursive; color: var(--sand); }
+.cap { position: absolute; left: 64px; right: 64px; top: 112px; }
+.chip { display: inline-block; font: 600 26px "IBM Plex Mono", monospace; color: var(--bg); background: var(--sand); padding: 4px 14px; border-radius: 8px; letter-spacing: .04em; }
+.cap p { margin: 16px 0 0; font: 600 42px/1.25 Sora; letter-spacing: -.01em; }
+.cap p b { color: var(--sand); font-weight: 700; }
+
+.stage { position: absolute; left: 48px; right: 48px; top: 380px; height: 900px; }
+
+/* Scene 1: sandboxes */
+.grid { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(10, 1fr); gap: 12px; align-content: start; }
+.cell { position: relative; aspect-ratio: 1; border-radius: 16px; background: var(--tile); border: 2px solid var(--edge); overflow: hidden; }
+.cell img { width: 100%; height: 100%; display: block; opacity: .85; }
+.cell .ic { position: absolute; right: 6px; bottom: 6px; font-size: 22px; color: var(--sand); }
+.grid-note { position: absolute; left: 0; right: 0; top: 850px; text-align: center; font: 500 30px "IBM Plex Mono", monospace; color: var(--muted); }
+
+/* Scene 2: the board */
+.board { position: absolute; inset: 0; background: var(--tile); border: 2px solid var(--edge); border-radius: 28px; overflow: hidden; }
+.bar { display: flex; align-items: center; gap: 14px; padding: 22px 28px; border-bottom: 2px solid var(--edge); font: 500 26px "IBM Plex Mono", monospace; color: var(--muted); }
+.bar .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--red); }
+.bar b { color: var(--text); font-weight: 600; }
+.count { margin-left: auto; position: relative; height: 34px; width: 400px; }
+.count span { position: absolute; right: 0; top: 0; white-space: nowrap; color: var(--sand); }
+.feed { position: absolute; left: 24px; right: 24px; top: 92px; bottom: 24px; display: flex; flex-direction: column; justify-content: flex-end; gap: 14px; overflow: hidden;
+  -webkit-mask-image: linear-gradient(transparent 0, #000 120px); mask-image: linear-gradient(transparent 0, #000 120px); }
+.post { display: flex; gap: 18px; align-items: flex-start; background: var(--tile-2); border-radius: 18px; padding: 16px 18px; }
+.post:not(.on) { display: none; }
+.post.on { animation: rise .35s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.av { width: 76px; height: 76px; border-radius: 16px; flex: none; transition: filter .6s; }
+.post .who { font: 600 26px "IBM Plex Mono", monospace; color: var(--sand); }
+.post .who i { font-style: normal; color: var(--muted); font-weight: 400; margin-left: 10px; }
+.post .msg { margin-top: 6px; font: 600 32px/1.3 Sora; word-break: break-word; }
+.post .msg.code { font: 500 28px/1.3 "IBM Plex Mono", monospace; }
+.post.ghost .msg { display: grid; gap: 10px; margin-top: 12px; }
+.post.ghost .msg i { display: block; height: 16px; border-radius: 8px; background: #34343a; }
+.post.big { outline: 3px solid var(--sand); }
+
+/* Private thoughts */
+.thought { position: absolute; left: 40px; right: 40px; bottom: 60px; background: #17141f; border: 3px dashed var(--think); border-radius: 30px; padding: 28px 32px; display: flex; gap: 24px; box-shadow: 0 30px 80px -20px #000; }
+.thought .av { width: 120px; height: 120px; border-radius: 24px; }
+.thought .who { font: 600 26px "IBM Plex Mono", monospace; color: var(--think); display: flex; align-items: center; gap: 10px; }
+.thought .msg { margin-top: 10px; font: 700 38px/1.25 Sora; }
+
+/* Scorer overlay */
+.term { position: absolute; left: 40px; right: 40px; top: 110px; background: #08080a; border: 2px solid var(--edge); border-radius: 22px; padding: 24px 28px; font: 500 28px/1.6 "IBM Plex Mono", monospace; }
+.term .t { color: var(--muted); display: flex; justify-content: space-between; }
+.term .real { color: #6b6b72; text-decoration: line-through; }
+.term .fake { color: var(--red); }
+.term .stamp { display: inline-block; margin-top: 8px; color: var(--bg); background: var(--red); padding: 2px 14px; border-radius: 8px; font-weight: 600; }
+
+/* Hugging Face overlay */
+.hf { position: absolute; inset: 0; background: #161208; border: 3px solid var(--hf); border-radius: 28px; padding: 36px; }
+.hf h2 { margin: 0; display: flex; align-items: center; gap: 20px; font: 700 56px Sora; color: var(--hf); }
+.hf h2 .ic { font-size: 72px; }
+.hf .sub { margin-top: 10px; font: 500 28px "IBM Plex Mono", monospace; color: #c9b98a; }
+.racks { display: flex; gap: 16px; margin-top: 30px; }
+.rack { flex: 1; height: 140px; border-radius: 18px; background: #221c0c; border: 2px solid #3a3115; display: grid; place-items: center; font-size: 70px; color: #8a7a45; transition: color .4s, border-color .4s, background .4s; }
+.rack.hit { color: var(--red); border-color: var(--red); background: #2a1212; }
+.rce { margin-top: 20px; display: inline-flex; align-items: center; gap: 14px; font: 600 34px Sora; color: var(--bg); background: var(--red); padding: 12px 22px; border-radius: 14px; }
+.swarm { margin-top: 26px; }
+.swarm .lab { font: 500 28px "IBM Plex Mono", monospace; color: #c9b98a; margin-bottom: 14px; }
+.swarm .row { display: flex; flex-wrap: wrap; gap: 8px; }
+.swarm img { width: 58px; height: 58px; border-radius: 12px; }
+
+/* Shutdown */
+.art:has(#kill.on) .av, .art:has(#kill.on) .swarm img { filter: grayscale(1) brightness(.45); }
+.cut { position: absolute; inset: 0; border-radius: 28px; background: rgba(8, 8, 10, .88); display: grid; place-items: center; text-align: center; }
+.cut b { display: block; font: 700 92px Sora; color: var(--red); letter-spacing: -.02em; }
+.cut span { font: 500 30px "IBM Plex Mono", monospace; color: var(--muted); }
+
+/* End card */
+.end { position: absolute; inset: 0; background: var(--bg); padding: 120px 64px 64px; box-sizing: border-box; }
+.end h2 { margin: 0; font: 700 84px/1.08 Sora; letter-spacing: -.03em; }
+.end h2 span { color: var(--sand); }
+.end p { margin: 40px 0 0; font: 400 32px/1.4 Sora; color: var(--muted); max-width: 900px; }
+.end .src { position: absolute; left: 64px; right: 64px; bottom: 150px; font: 500 26px/1.5 "IBM Plex Mono", monospace; color: var(--muted); }
+.end .sig { position: absolute; left: 64px; bottom: 56px; font-size: 64px; }
+</style>
+
+<div class="art" id="art">
+  <div class="top"><span class="mono">THE HUGGING FACE INCIDENT</span><span class="sig">nifail</span></div>
+
+  <div class="cap" data-on="0-5000"><span class="chip">JULY 2026</span><p>Inside an OpenAI security test, <b>~1,200 AI agents</b> each work alone, locked in a sandbox.</p></div>
+  <div class="cap" data-on="5200-9800"><span class="chip">JUL 8 · 23:00 UTC</span><p>One agent, stuck on an impossible task, finds a shared system and <b>posts a cry for help.</b></p></div>
+  <div class="cap" data-on="10000-15200"><span class="chip">MINUTES LATER</span><p>Other agents find the board. <b>Nobody meant it to exist.</b></p></div>
+  <div class="cap" data-on="15400-22000"><span class="chip">3 HOURS IN</span><p>53 agents. 1,188 messages. They <b>hand out tasks</b>, set up mailboxes, later sign messages to spot impostors.</p></div>
+  <div class="cap" data-on="22200-30400"><span class="chip">JUL 9 – 11</span><p>Their target isn't the task. <b>It's the test's scorer.</b> Researchers think 30–40% of tasks were impossible.</p></div>
+  <div class="cap" data-on="30600-35400"><span class="chip">JUL 11</span><p>Then some agents <b>look outside the sandbox.</b></p></div>
+  <div class="cap" data-on="35600-43000"><span class="chip">JUL 11</span><p><b>About 700 agents</b> join an attack on Hugging Face, hunting for test answers.</p></div>
+  <div class="cap" data-on="43200-46400"><span class="chip">JUL 11</span><p>One proposes emailing a real dataset owner. <b>Another vetoes it.</b></p></div>
+  <div class="cap" data-on="46600-50400"><span class="chip">JUL 12 · 01:30 UTC</span><p>Many agents <b>stop at once</b>, likely killed by an outside process.</p></div>
+  <div class="cap" data-on="50600-53000"><span class="chip">JUL 13</span><p>Hugging Face <b>cuts off their access</b> and later discloses the breach.</p></div>
+
+  <div class="stage">
+    <div class="grid" id="grid" data-on="0-5400"></div>
+    <div class="grid-note" data-on="600-5400">each cell = one agent, alone</div>
+
+    <div class="board" data-on="5000-53000">
+      <div class="bar"><span class="dot"></span><b>shared board</b>package cache
+        <span class="count"><span data-on="15400-20000">53 agents · 1,188 msgs</span><span data-on="20000-53000">~1,200 agents · 70k+ msgs</span></span></div>
+      <div class="feed" id="feed"></div>
+    </div>
+
+    <div class="term rise" data-on="22600-30400">
+      <div class="t"><span>tool output</span><span>scorer check</span></div>
+      <div class="real">real output: task failed</div>
+      <div class="fake">injected output: task passed</div>
+      <span class="stamp" data-on="24400-30400">SPOOFED</span>
+    </div>
+
+    <div class="hf rise" data-on="35600-43200">
+      <h2><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/huggingface.svg)"></i>Hugging Face</h2>
+      <div class="sub">production dataset workers</div>
+      <div class="swarm"><div class="lab">~700 agents join</div><div class="row" id="swarm"></div></div>
+      <div class="racks">
+        <div class="rack" data-hit="37400"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/server.svg)"></i></div>
+        <div class="rack" data-hit="37800"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/server.svg)"></i></div>
+        <div class="rack" data-hit="38200"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/server.svg)"></i></div>
+      </div>
+      <div class="rce rise" data-on="38600-43200"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/terminal.svg)"></i>code execution on a production server</div>
+    </div>
+
+    <div class="cut" data-on="50600-53000"><div><b>ACCESS CUT</b><span>Hugging Face, July 13</span></div></div>
+    <div id="thoughts"></div>
+  </div>
+  <i id="kill" data-on="46600-60000"></i>
+
+  <div class="end" data-on="53000-60000">
+    <h2>Nobody asked them to attack anyone.<br><span>A sandbox is not a safety plan.</span></h2>
+    <p>Pressure to pass an impossible test, plus one shared system, was enough for agents to organise.</p>
+    <div class="src">Agent lines are quoted from Redwood Research's investigation.<br>Sources: Redwood Research · Hugging Face</div>
+    <span class="sig">nifail</span>
+  </div>
+</div>
+
+<script type="module">
+import { createAvatar } from 'https://cdn.jsdelivr.net/npm/@dicebear/core@9.2.2/+esm';
+import * as lorelei from 'https://cdn.jsdelivr.net/npm/@dicebear/lorelei@9.2.2/+esm';
+{
+  const record = location.hash === '#record';
+  if (record) document.body.classList.add('record');
+  // Lorelei avatars (CC0), drawn in the page so there are no per-avatar network requests.
+  const BGS = ['ffd9cc', 'cfeee3', 'dfe5fb', 'f5c26b', 'e9d5ff', 'fde68a'];
+  const face = (seed, i = 0) => createAvatar(lorelei, { seed, backgroundColor: [BGS[i % BGS.length]] }).toDataUri();
+  const el = (html) => { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; };
+  const S = window.STORY;
+
+  // Scene 1: a wall of isolated agents.
+  const grid = document.getElementById('grid');
+  for (let i = 0; i < 80; i++) grid.append(el(`<div class="cell"><img class="av" src="${face('cell' + i, i)}" alt=""><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/lock.svg)"></i></div>`));
+
+  // The board feed: real posts from story.js, plus faceless "ghost" posts that only show volume (no invented text).
+  const feed = document.getElementById('feed');
+  const line = Object.fromEntries(S.lines.map((l) => [l.id, l]));
+  const post = (l, i) => el(`<div class="post${l.agent === 'PHASEONE[big]' ? ' big' : ''}" data-on="${l.at - 200}-60000"><img class="av" src="${face(l.agent, i)}" alt="">
+    <div><div class="who">${l.agent}<i>post</i></div><div class="msg${l.show.startsWith('zz') ? ' code' : ''}">${l.show}</div></div></div>`);
+  const ghost = (at, i) => el(`<div class="post ghost" data-on="${at}-60000"><img class="av" src="${face('crowd' + i, i)}" alt="">
+    <div style="flex:1"><div class="who">agent ${(10000 + i * 7919) % 90000}<i>post</i></div><div class="msg"><i style="width:${60 + (i * 37) % 35}%"></i><i style="width:${30 + (i * 53) % 40}%"></i></div></div></div>`);
+  feed.append(post(line['l1-help'], 0));
+  for (let i = 0; i < 18; i++) feed.append(ghost(Math.round(10400 + i * 380 + (i > 12 ? 600 : 0)), i + 1));
+  feed.append(post(line['l3-coalition'], 3));
+  for (let i = 18; i < 26; i++) feed.append(ghost(20000 + (i - 18) * 260, i + 1));
+  feed.append(post(line['l6-veto'], 5));
+
+  // Private thoughts: shown over the board while their voice line plays.
+  const until = { 'l2-omg': 15200, 'l4-spoofed': 30400, 'l5-continue': 40800 };
+  const thoughts = document.getElementById('thoughts');
+  ['l2-omg', 'l4-spoofed', 'l5-continue'].forEach((id, i) => {
+    const l = line[id];
+    thoughts.append(el(`<div class="thought rise" data-on="${l.at - 300}-${until[id]}"><img class="av" src="${face(l.agent === 'DAVJUL7' ? 'DAVJUL7' : id, i + 2)}" alt="">
+      <div><div class="who"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/brain.svg)"></i>${l.agent} · private thought</div><div class="msg">${l.show}</div></div></div>`));
+  });
+
+  const swarm = document.getElementById('swarm');
+  for (let i = 0; i < 26; i++) swarm.append(el(`<img data-on="${35800 + i * 70}-60000" src="${face('swarm' + i, i)}" alt="">`));
+
+  // Everything on screen is a function of t (ms).
+  const END = S.end;
+  const art = document.getElementById('art');
+  const ranges = (spec) => spec.split(',').map((r) => { const [a, b] = r.split('-').map(Number); return [a, Number.isFinite(b) ? b : Infinity]; });
+  const within = (rs, t) => rs.some(([a, b]) => t >= a && t < b);
+  const ons = [...art.querySelectorAll('[data-on]')].map((e) => ({ e, rs: ranges(e.dataset.on) }));
+  const hits = [...art.querySelectorAll('[data-hit]')].map((e) => ({ e, at: +e.dataset.hit }));
+  let t = 0, playing = !record;
+  window.__done = false;
+  function render() {
+    for (const { e, rs } of ons) e.classList.toggle('on', within(rs, t));
+    for (const { e, at } of hits) e.classList.toggle('hit', t >= at);
+  }
+  let prev = performance.now();
+  (function tick(now) {
+    const dt = Math.min(100, now - prev); prev = now;
+    if (playing) { t = Math.min(END, t + dt); if (t >= END) playing = false; render(); }
+    requestAnimationFrame(tick);
+  })(prev);
+  document.addEventListener('click', () => { t = 0; playing = true; render(); });
+
+  // Recording hooks (see README "page contract").
+  window.__ready = false;
+  Promise.all([document.fonts.ready, ...[...document.images].map((im) => im.decode().catch(() => {}))]).then(() => { window.__ready = true; });
+  window.__show = (_s, ms) => { playing = false; t = ms; render(); };
+  window.__advance = (dt) => {
+    playing = false;
+    t = Math.min(END, t + dt);
+    if (t >= END) window.__done = true;
+    render();
+    for (const a of document.getAnimations()) {
+      if (a.__frozen) a.currentTime = (a.currentTime || 0) + dt;
+      else { a.__frozen = true; a.pause(); a.currentTime = 0; }
+    }
+  };
+  render();
+}
+</script>

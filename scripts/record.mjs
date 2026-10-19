@@ -22,7 +22,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 fs.rmSync(framesDir, { recursive: true, force: true });
 fs.mkdirSync(framesDir, { recursive: true });
 
-const browser = await puppeteer.launch({ executablePath: CHROME, headless: true, protocolTimeout: 600000, args: ['--hide-scrollbars'] });
+const browser = await puppeteer.launch({ executablePath: CHROME, headless: true, protocolTimeout: 600000, args: ['--hide-scrollbars', ...(process.getuid?.() === 0 ? ['--no-sandbox'] : [])] });
 try {
   const page = await browser.newPage();
   await page.setViewport(VIEW);

@@ -205,6 +205,16 @@ Static 4:5 posts (1080×1350) for a personal-brand series about AI. Each one is 
 - **Rules:** the smallest text is 26 px on the 1080 canvas, so it stays readable in a phone feed. Use one avatar style per post: Notionists, Open Peeps or Lorelei (all CC0), or Micah (CC BY 4.0, which needs the credit "Avatars: Micah by Micah Lanier"). No emoji.
 - **Render PNGs:** `npm run stills -- posts/01-mcp-vs-api/*.html` writes a PNG next to each HTML file. It waits for fonts and avatars before taking each shot.
 
+## Storytelling videos (ElevenLabs)
+
+Character-driven story videos, such as `posts/02-hugging-face-incident/video/`, use the same page contract and recorder as the Codecue video. Sound comes from ElevenLabs.
+
+- **`story.js`:** the cue sheet. It holds the voices, the lines (each with what is said, what is shown on screen and the source), and the sound effects, each with a start time in ms. The page reads it, so the visuals and the audio share one timeline.
+- **`node scripts/elevenlabs.mjs <story.js> <audioDir> [voices|sfx|all]`:** generates any missing clips. Files that already exist are skipped, so credits are only spent on new clips. It needs `ELEVENLABS_API_KEY`, kept in the git-ignored `.env`. The free plan can only use premade voices through the API.
+- **`node scripts/record.mjs story.html out 30 1080 1350 1`:** records the video. Use 10 fps for a quick preview.
+- **`node scripts/mix.mjs <story.js> <audioDir> out/story.mp4 out/final.mp4 [voices|all]`:** places every clip at its cue time, adds a light radio filter to agent voices, normalises loudness and muxes the audio onto the video.
+- **Honesty rule:** characters only speak real, sourced lines. Private reasoning is shown as a dashed "private thought" bubble, and board posts are shown as posts. Faceless grey "ghost" posts show volume without inventing text.
+
 ## Files
 
 | Path | What |
