@@ -1,0 +1,316 @@
+<title>Codecue Flow</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;600;700&display=swap">
+<style>
+/* Layout: an 864x1080 (4:5) bento of product tiles that build in order, one step of the flow per tile. */
+:root {
+  --bg: #121212;
+  --tile: #1d1d1d;
+  --tile-2: #262626;
+  --edge: #2b2b2b;
+  --text: #f2efe9;
+  --muted: #9a958c;
+  --coral: #ff7a59;
+  --sand: #f5c26b;
+  --talk: #4cc38a;
+  --paper: #f2efe9;
+  --paper-ink: #161616;
+  --sora: "Sora", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  color-scheme: dark;
+}
+html, body { margin: 0; height: 100%; }
+body { background: #0b0b0b; color: var(--text); display: grid; place-items: center; font-family: var(--sora); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); box-sizing: border-box; }
+body.record { background: var(--bg); padding: 0; }
+.wrap { width: min(100%, calc((100vh - 32px) * 0.8)); max-width: 100%; aspect-ratio: 4 / 5; position: relative; border-radius: 14px; overflow: hidden; }
+body.record .wrap { width: 100vw; border-radius: 0; }
+.art { position: absolute; top: 0; left: 0; width: 864px; height: 1080px; transform-origin: 0 0; transform: scale(var(--k, 1)); background: var(--bg); overflow: hidden; }
+
+.i { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.brand { width: 18px; height: 18px; flex: none; }
+
+.tile { position: absolute; background: var(--tile); border: 1px solid var(--edge); border-radius: 22px; padding: 20px 22px; box-sizing: border-box; overflow: hidden;
+  opacity: 0; transform: translateY(14px) scale(.985); transition: opacity .45s ease, transform .45s ease, border-color .3s, box-shadow .3s; }
+.tile.on { opacity: 1; transform: none; }
+.tile.hl { border-color: var(--coral); box-shadow: 0 0 0 1px var(--coral), 0 24px 50px -24px rgba(255, 122, 89, .55); }
+.step { display: flex; align-items: center; gap: 10px; font: 600 15.5px var(--sora); color: #d6d0c5; }
+.step b { width: 26px; height: 26px; border-radius: 50%; background: var(--coral); color: var(--bg); display: grid; place-items: center; font-size: 13px; }
+.step .right { margin-left: auto; display: flex; align-items: center; gap: 8px; color: var(--muted); font-weight: 400; font-size: 12.5px; }
+.pop { opacity: 0; transform: translateY(6px); transition: opacity .3s ease, transform .3s ease; }
+.pop.on { opacity: 1; transform: none; }
+
+/* Header */
+.mark { width: 56px; height: 56px; border-radius: 16px; background: var(--coral); color: var(--bg); display: grid; place-items: center; }
+.mark .i { width: 30px; height: 30px; stroke-width: 2.2; }
+.head { display: flex; align-items: center; gap: 18px; }
+.name { font: 700 56px/1 var(--sora); letter-spacing: -.045em; }
+.name span { color: var(--coral); }
+.tagline { margin-top: 6px; font-size: 17px; color: var(--muted); }
+.pill { position: absolute; right: 22px; top: 22px; font: 600 12.5px var(--sora); border: 1px solid #3a3a3a; color: #c9c3b8; padding: 5px 12px; border-radius: 999px; }
+
+/* Repo tile */
+.repo { display: flex; align-items: center; gap: 10px; padding: 9px 12px; background: var(--tile-2); border-radius: 10px; margin-top: 8px; font: 400 14.5px var(--mono); color: #d8d3ca; outline: 1.5px solid transparent; transition: outline-color .3s, opacity .3s, transform .3s; }
+.repo .i { width: 17px; height: 17px; color: var(--muted); }
+.repo .lock { margin-left: auto; width: 14px; height: 14px; }
+.repo .ok { color: var(--coral); opacity: 0; }
+.repo.sel { outline-color: var(--coral); }
+.repo.sel .ok { opacity: 1; }
+.repo.sel .i:first-child { color: var(--coral); }
+.note { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; color: var(--muted); }
+.note .i { width: 15px; height: 15px; color: var(--sand); }
+
+/* Learn tile */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.chip { display: inline-flex; align-items: center; gap: 7px; font: 600 13.5px var(--sora); padding: 7px 12px; border-radius: 999px; background: #2a2622; color: var(--sand); border: 1px solid #3d352b; }
+.chip .i { width: 15px; height: 15px; }
+.files { display: grid; gap: 6px; margin-top: 12px; }
+.file { display: flex; align-items: center; gap: 10px; font: 400 13.5px var(--mono); color: #d8d3ca; }
+.badge { width: 22px; height: 22px; border-radius: 5px; display: grid; place-items: center; font: 700 12.5px var(--sora); color: #fff; flex: none; }
+.badge.ppt { background: #c43e1c; } .badge.doc { background: #185abd; } .badge.teams { background: #5059c9; }
+.file .brand { width: 22px; height: 22px; }
+
+/* Meeting tile */
+.apps { display: flex; align-items: center; gap: 8px; }
+.apps .brand, .apps .badge { width: 18px; height: 18px; font-size: 11px; border-radius: 4px; }
+.apps .brand[aria-label="zoom"] { width: 64px; height: 30px; margin: 0 -10px; }
+.call { position: absolute; left: 18px; right: 18px; top: 58px; bottom: 16px; background: #0d0d0d; border-radius: 14px; padding: 10px 12px; display: grid; grid-template-rows: auto 1fr auto; gap: 8px; }
+.callbar { display: flex; align-items: center; gap: 8px; font: 500 12.5px var(--mono); color: var(--muted); }
+.callbar .rec { width: 8px; height: 8px; border-radius: 50%; background: #e5484d; }
+.callbar .tm { margin-left: auto; }
+.people { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 8px; min-height: 0; }
+.person { position: relative; background: var(--tile-2); border-radius: 10px; display: grid; place-items: start center; padding-top: 7px; box-shadow: inset 0 0 0 0 var(--talk); transition: box-shadow .2s; overflow: hidden; }
+.person.on { box-shadow: inset 0 0 0 2.5px var(--talk); }
+.av { width: 52px; height: 52px; border-radius: 12px; overflow: hidden; }
+.av svg { width: 100%; height: 100%; display: block; }
+.tagname { position: absolute; left: 8px; bottom: 6px; display: flex; align-items: center; gap: 5px; font: 500 11.5px var(--sora); background: rgba(0, 0, 0, .55); padding: 2px 8px 2px 6px; border-radius: 6px; }
+.tagname .i { width: 12px; height: 12px; }
+.tagname .muted-mic { color: #e5484d; }
+.wave { position: absolute; right: 8px; top: 8px; display: flex; gap: 2px; align-items: flex-end; height: 14px; opacity: 0; }
+.wave i { width: 3px; background: var(--talk); border-radius: 2px; animation: eq .6s ease-in-out infinite alternate; }
+.wave i:nth-child(2) { animation-delay: -.2s; } .wave i:nth-child(3) { animation-delay: -.4s; }
+.person.on .wave { opacity: 1; }
+@keyframes eq { from { height: 4px; } to { height: 14px; } }
+.tools { display: flex; justify-content: center; gap: 10px; }
+.tools span { width: 32px; height: 32px; border-radius: 50%; background: #262626; display: grid; place-items: center; color: #d8d3ca; }
+.tools span .i { width: 16px; height: 16px; }
+.tools .leave { width: 48px; border-radius: 16px; background: #e5484d; color: #fff; }
+
+/* Transcript tile */
+.live { display: inline-flex; align-items: center; gap: 6px; font: 600 11.5px var(--mono); color: var(--coral); letter-spacing: .08em; }
+.live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--coral); }
+.stream { position: absolute; left: 16px; right: 16px; top: 56px; bottom: 16px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; overflow: hidden;
+  -webkit-mask-image: linear-gradient(transparent 0, #000 40px); mask-image: linear-gradient(transparent 0, #000 40px); }
+.bub { background: var(--tile-2); border-radius: 12px 12px 12px 4px; padding: 8px 11px; font-size: 13.5px; line-height: 1.4; color: #e6e1d8; }
+.bub b { display: block; font-size: 11.5px; color: var(--muted); font-weight: 600; }
+.bub.skip { background: transparent; border: 1px dashed #3a3a3a; color: var(--muted); font-style: italic; display: flex; align-items: center; gap: 8px; }
+.bub.skip .i { width: 14px; height: 14px; color: #e5484d; }
+.flag { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font: 600 11.5px var(--sora); padding: 3px 8px; border-radius: 6px; }
+.flag .i { width: 13px; height: 13px; }
+.flag.q { background: #3a3020; color: var(--sand); }
+.flag.f { background: #3b2620; color: var(--coral); }
+.bub:not(.on) { display: none; }
+.bub.on { animation: rise .35s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* Answer tile */
+.card { margin-top: 14px; background: var(--paper); color: var(--paper-ink); border-radius: 16px; padding: 16px 18px; }
+.card .top { display: flex; align-items: center; gap: 8px; font: 600 13px var(--sora); color: #c4502f; }
+.card .top .i { width: 15px; height: 15px; }
+.card .top .t { margin-left: auto; font-family: var(--mono); }
+.card .q { margin-top: 8px; font-size: 14.5px; color: #5f5a52; }
+.card .a { margin-top: 6px; font: 600 19px/1.38 var(--sora); min-height: 52px; }
+.card .src { display: flex; gap: 6px; margin-top: 10px; }
+.card .src > span { display: inline-flex; align-items: center; gap: 6px; font: 500 12px var(--mono); background: #e2ddd4; padding: 3px 8px; border-radius: 6px; color: #4c4740; }
+.card .src .i { width: 13px; height: 13px; }
+.card .src .badge { width: 15px; height: 15px; font-size: 9px; border-radius: 3px; }
+.caret::after { content: ""; display: inline-block; width: 2px; height: 1em; background: #c4502f; margin-left: 2px; vertical-align: -2px; }
+.private { display: inline-flex; align-items: center; gap: 6px; }
+
+/* PR tile */
+.pr { margin-top: 14px; background: var(--tile-2); border-radius: 14px; padding: 14px; display: grid; gap: 8px; }
+.pr .t { display: flex; align-items: center; gap: 8px; font: 600 14.5px var(--sora); }
+.pr .t .i { color: #57ab5a; }
+.pr .d { font: 400 12px var(--mono); color: #9fd8a8; background: #1f2a21; padding: 4px 8px; border-radius: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pr .s { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--sand); }
+.pr .s .i { width: 14px; height: 14px; }
+
+.review { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1.5px solid var(--coral); color: var(--coral); border-radius: 10px; padding: 8px; font: 600 13.5px var(--sora); }
+.review .brand { width: 16px; height: 16px; }
+.foot { position: absolute; left: 34px; right: 34px; bottom: 26px; display: flex; justify-content: space-between; font-size: 13px; color: #6c675f; }
+
+.replay { position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); font: 600 14px var(--sora); background: var(--coral); color: var(--bg); border: 0; border-radius: 10px; padding: 10px 16px; cursor: pointer; }
+.replay:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+body.record .replay { display: none; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+
+<div class="wrap" id="wrap">
+  <div class="art" id="art">
+    <div class="tile" data-on="0" style="left: 32px; top: 32px; width: 800px; height: 118px">
+      <div class="head">
+        <div class="mark"><i data-ic="message-square-code"></i></div>
+        <div><div class="name">code<span>cue</span></div><div class="tagline">Your cue on technical questions, live in meetings.</div></div>
+      </div>
+      <span class="pill">concept</span>
+    </div>
+
+    <div class="tile" data-on="500" data-hl="500-2400" style="left: 32px; top: 166px; width: 392px; height: 226px">
+      <div class="step"><b>1</b>Connect your repo<span class="right"><i data-br="github" data-mono></i>GitHub</span></div>
+      <div class="repo pop" data-on="700"><i data-ic="folder-git-2"></i>clinic-admin-legacy</div>
+      <div class="repo pop" data-on="850" data-sel="1700"><i data-ic="folder-git-2"></i>clinic-booking<i data-ic="lock" class="lock"></i><i data-ic="circle-check" class="ok"></i></div>
+      <div class="repo pop" data-on="1000"><i data-ic="folder-git-2"></i>marketing-site</div>
+      <div class="note pop" data-on="2000"><i data-ic="laptop"></i>Copied to your laptop. Code stays with you.</div>
+    </div>
+
+    <div class="tile" data-on="2500" data-hl="2500-4400" style="left: 440px; top: 166px; width: 392px; height: 226px">
+      <div class="step"><b>2</b>Learns the project</div>
+      <div class="chips">
+        <span class="chip pop" data-on="2800"><i data-ic="code"></i>code</span>
+        <span class="chip pop" data-on="3000"><i data-ic="file-text"></i>summary</span>
+        <span class="chip pop" data-on="3200"><i data-ic="target"></i>your focus</span>
+      </div>
+      <div class="files">
+        <div class="file pop" data-on="3500"><span class="badge ppt">P</span>Q3-roadmap.pptx</div>
+        <div class="file pop" data-on="3750"><span class="badge doc">W</span>Kickoff-minutes.docx</div>
+        <div class="file pop" data-on="4000"><i data-br="acrobat"></i>Vendor-report.pdf</div>
+      </div>
+    </div>
+
+    <div class="tile" data-on="4500" data-hl="4500-8300,11000-12000" style="left: 32px; top: 408px; width: 520px; height: 350px">
+      <div class="step"><b>3</b>Listens to the call
+        <span class="right apps">works with <i data-br="zoom"></i><i data-br="meet"></i><span class="badge teams">T</span></span></div>
+      <div class="call">
+        <div class="callbar"><span class="rec"></span>Weekly sync · Meridian Health<span class="tm">12:04</span></div>
+        <div class="people">
+          <div class="person" data-on="7000-8400,11000-12000"><div class="av" data-av="sarah"></div><span class="tagname"><i data-ic="mic"></i>Sarah · client</span><span class="wave"><i></i><i></i><i></i></span></div>
+          <div class="person" data-on="5100-6100"><div class="av" data-av="aminah"></div><span class="tagname"><i data-ic="mic"></i>Dr. Aminah</span><span class="wave"><i></i><i></i><i></i></span></div>
+          <div class="person"><div class="av" data-av="daniel"></div><span class="tagname"><i data-ic="mic-off" class="muted-mic"></i>Daniel · dev</span></div>
+          <div class="person" data-on="6200-6900"><div class="av" data-av="you"></div><span class="tagname"><i data-ic="mic"></i>You</span><span class="wave"><i></i><i></i><i></i></span></div>
+        </div>
+        <div class="tools"><span><i data-ic="mic"></i></span><span><i data-ic="video"></i></span><span><i data-ic="monitor-up"></i></span><span><i data-ic="users"></i></span><span class="leave"><i data-ic="phone-off"></i></span></div>
+      </div>
+    </div>
+
+    <div class="tile" data-on="4800" data-hl="4800-8300,11000-12000" style="left: 568px; top: 408px; width: 264px; height: 350px">
+      <div class="step"><i data-ic="audio-lines"></i>Transcript<span class="right"><span class="live">LIVE</span></span></div>
+      <div class="stream">
+        <div class="bub" data-on="5500"><b>Dr. Aminah</b>We launch in Johor next month.</div>
+        <div class="bub skip" data-on="6500"><i data-ic="mic-off"></i>Your voice is not transcribed</div>
+        <div class="bub" data-on="7400"><b>Sarah · client</b>Can patients pay with FPX online banking?<br><span class="flag q pop" data-on="8000"><i data-ic="message-circle-question"></i>Question</span></div>
+        <div class="bub" data-on="11300"><b>Sarah · client</b>Could we get SMS reminders too?<br><span class="flag f pop" data-on="11800"><i data-ic="lightbulb"></i>Feature request</span></div>
+      </div>
+    </div>
+
+    <div class="tile" data-on="8300" data-hl="8300-11000" style="left: 32px; top: 774px; width: 520px; height: 236px">
+      <div class="step"><b>4</b>Answers only you<span class="right private"><i data-ic="lock"></i>private</span></div>
+      <div class="card">
+        <div class="top"><i data-ic="sparkles"></i>Codecue<span class="t pop" data-on="10900">1.1 s</span></div>
+        <div class="q">Can patients pay with FPX online banking?</div>
+        <div class="a" id="answer" data-at="8600" data-ms="20">Not yet. Checkout takes cards only. Stripe supports FPX, so it's about 2–3 days to add.</div>
+        <div class="src pop" data-on="10700"><span><i data-ic="file-code"></i>checkout.ts</span><span><span class="badge ppt">P</span>roadmap · slide 4</span></div>
+      </div>
+    </div>
+
+    <div class="tile" data-on="12000" data-hl="12000-13800" style="left: 568px; top: 774px; width: 264px; height: 236px">
+      <div class="step"><b>5</b>Becomes a PR</div>
+      <div class="pr">
+        <div class="t pop" data-on="12300"><i data-ic="git-pull-request"></i>Spec: SMS reminders</div>
+        <div class="d pop" data-on="12600">+ docs/feature-requests/sms-reminders.md</div>
+        <div class="s pop" data-on="13000"><i data-ic="clock"></i>Waiting for your review</div>
+      </div>
+      <div class="review pop" data-on="13400"><i data-br="github" data-mono></i>Review on GitHub</div>
+    </div>
+
+    <div class="foot"><span>Concept · in development</span><span>Example repo, people and meeting are fictional</span></div>
+  </div>
+</div>
+<button class="replay" id="replay" type="button">Replay</button>
+
+<script>
+/*ASSETS*/
+(() => {
+  const record = location.hash === '#record';
+  if (record) document.body.classList.add('record');
+  const art = document.getElementById('art');
+  const wrap = document.getElementById('wrap');
+  const fit = () => art.style.setProperty('--k', wrap.clientWidth / 864);
+  new ResizeObserver(fit).observe(wrap);
+  fit();
+
+  // Fill in icons, brand marks and avatars.
+  const NS = 'http://www.w3.org/2000/svg';
+  for (const el of document.querySelectorAll('[data-ic]')) {
+    const svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('class', `i ${el.className}`.trim());
+    svg.setAttribute('aria-hidden', 'true');
+    svg.innerHTML = ASSETS.ic[el.dataset.ic];
+    el.replaceWith(svg);
+  }
+  for (const el of document.querySelectorAll('[data-br]')) {
+    const b = ASSETS.br[el.dataset.br];
+    const svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('class', 'brand');
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', el.dataset.br);
+    svg.innerHTML = `<path d="${b.path}" fill="${el.hasAttribute('data-mono') ? 'currentColor' : '#' + b.hex}"/>`;
+    el.replaceWith(svg);
+  }
+  for (const el of document.querySelectorAll('[data-av]')) el.innerHTML = ASSETS.av[el.dataset.av];
+
+  // Everything on screen is a function of t (ms), so playback, recording and jumps all agree.
+  const END = 15000;
+  const ranges = (spec) => spec.split(',').map((r) => { const [a, b] = r.split('-').map(Number); return [a, Number.isFinite(b) ? b : Infinity]; });
+  const within = (rs, t) => rs.some(([a, b]) => t >= a && t < b);
+  const ons = [...art.querySelectorAll('[data-on]')].map((el) => ({ el, rs: ranges(el.dataset.on) }));
+  const hls = [...art.querySelectorAll('[data-hl]')].map((el) => ({ el, rs: ranges(el.dataset.hl) }));
+  const sels = [...art.querySelectorAll('[data-sel]')].map((el) => ({ el, at: +el.dataset.sel }));
+  const answer = document.getElementById('answer');
+  const full = answer.textContent.trim();
+  const ansAt = +answer.dataset.at, ansMs = +answer.dataset.ms;
+  answer.textContent = '';
+  let shown = -1;
+
+  let t = 0, playing = !record;
+  window.__done = false;
+
+  function render() {
+    for (const { el, rs } of ons) el.classList.toggle('on', within(rs, t));
+    for (const { el, rs } of hls) el.classList.toggle('hl', within(rs, t));
+    for (const { el, at } of sels) el.classList.toggle('sel', t >= at);
+    const n = Math.max(0, Math.min(full.length, Math.floor((t - ansAt) / ansMs)));
+    if (n !== shown) { answer.textContent = full.slice(0, n); shown = n; }
+    answer.classList.toggle('caret', n > 0 && n < full.length);
+  }
+
+  let prev = performance.now();
+  function tick(now) {
+    const dt = Math.min(100, now - prev); prev = now;
+    if (playing) { t = Math.min(END, t + dt); if (t >= END) playing = false; render(); }
+    requestAnimationFrame(tick);
+  }
+  document.getElementById('replay').addEventListener('click', () => { t = 0; playing = true; render(); });
+
+  // Recording hooks: move the timeline and every CSS animation forward by exactly dt ms per frame.
+  window.__ready = false;
+  document.fonts.ready.then(() => { window.__ready = true; });
+  window.__show = (_s, ms) => { playing = false; t = ms; render(); };
+  window.__advance = (dt) => {
+    playing = false;
+    t = Math.min(END, t + dt);
+    if (t >= END) window.__done = true;
+    render();
+    for (const a of document.getAnimations()) {
+      if (a.__frozen) a.currentTime = (a.currentTime || 0) + dt;
+      else { a.__frozen = true; a.pause(); a.currentTime = 0; }
+    }
+  };
+
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { t = END; playing = false; }
+  render();
+  requestAnimationFrame(tick);
+})();
+</script>
