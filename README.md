@@ -192,6 +192,19 @@ Still to do:
 - **Scope selectors per mock-up** when several sit on one page; generic class names clashed.
 - **Check stills before a full recording.** Take `STILLS=` at the busy moments (about 3.3 s, 7.6 s, 9.8 s, 15 s) and look at them before recording.
 
+## LinkedIn posts ("AI, explained" series)
+
+Static 4:5 posts (1080×1350) for a personal-brand series about AI. Each one is signed **nifail** in Chewy. A video version with an AI voiceover comes after a style is chosen.
+
+- **Plan:** the "LinkedIn Content Plan" Google Sheet, in the "LinkedIn Content" Drive folder. Per topic it holds 5 hooks, 4 layout links, the chosen layout, 5 captions, the avatar style and sources.
+- **Designs:** `posts/<nn-topic>/{a-bento,b-editorial,c-comic,d-poster}.html`. Each file stands alone: fonts, Lucide icons, Simple Icons marks and DiceBear avatars all load from CDNs, so a file opens directly in a browser. Copies live in the topic's Drive subfolder.
+  - **A · Dark bento:** charcoal tiles, warm neutrals, sand accent.
+  - **B · Editorial:** cream paper, Instrument Serif headline, ink-blue labels.
+  - **C · Comic:** three outlined panels with speech bubbles. One beat per panel, so the panels can become video scenes.
+  - **D · Poster:** one big number story on a blue field with lime accents.
+- **Rules:** the smallest text is 26 px on the 1080 canvas, so it stays readable in a phone feed. Use one avatar style per post: Notionists, Open Peeps or Lorelei (all CC0), or Micah (CC BY 4.0, which needs the credit "Avatars: Micah by Micah Lanier"). No emoji.
+- **Render PNGs:** `npm run stills -- posts/01-mcp-vs-api/*.html` writes a PNG next to each HTML file. It waits for fonts and avatars before taking each shot.
+
 ## Files
 
 | Path | What |
@@ -201,5 +214,7 @@ Still to do:
 | `scripts/record.mjs` | Frame-by-frame recorder that makes the MP4 and GIF (`STILLS=` for PNG stills) |
 | `scripts/shot.mjs` | Full-page screenshot of any HTML file |
 | `scripts/avatar-sheet.mjs` | Contact sheet of Notionists avatars, for picking people |
+| `scripts/stills.mjs` | Renders 1080×1350 post designs to PNG |
 | `scripts/chrome.mjs` | Finds Chrome (`CHROME_PATH` overrides) |
+| `posts/` | LinkedIn post designs, one folder per topic |
 | `out/` | Finished MP4 and GIF. Frames and stills are git-ignored |

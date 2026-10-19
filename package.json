@@ -5,7 +5,8 @@
   "scripts": {
     "build": "node scripts/build.mjs src/codecue-flow.template.html build/codecue-flow.html",
     "record": "npm run build && node scripts/record.mjs build/codecue-flow.html out 30 864 1080 1.25",
-    "shot": "npm run build && node scripts/shot.mjs build/codecue-flow.html out/shot.png 864"
+    "shot": "npm run build && node scripts/shot.mjs build/codecue-flow.html out/shot.png 864",
+    "stills": "node scripts/stills.mjs"
   },
   "dependencies": {
     "@dicebear/collection": "^9.2.2",

@@ -1,0 +1,49 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>MCP vs API · D · Poster</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=IBM+Plex+Mono:wght@500&family=Sora:wght@400;600;800&display=swap">
+<style>
+/* D · Poster: one big number story on a solid colour field. 1080x1350 (4:5). Smallest text 26px. */
+:root { --field: #1f3cff; --cream: #f6f1e7; --lime: #d4ff4f; --soft: #b9c3ff; }
+body { margin: 0; background: var(--field); color: var(--cream); font-family: Sora, sans-serif; }
+.art { position: relative; width: 1080px; height: 1350px; overflow: hidden; padding: 64px; box-sizing: border-box; }
+.ic { display: inline-block; width: 1em; height: 1em; flex: none; background: currentColor; -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+.label { display: flex; justify-content: space-between; font: 500 28px "IBM Plex Mono", monospace; letter-spacing: .08em; }
+.q { margin-top: 40px; font: 600 50px/1.15 Sora; letter-spacing: -.02em; max-width: 900px; }
+.nums { display: flex; align-items: center; gap: 36px; margin-top: 10px; }
+.n { font: 800 440px/1 Sora; letter-spacing: -.06em; }
+.n.old { position: relative; color: var(--soft); }
+.n.old::after { content: ""; position: absolute; left: -10px; right: -10px; top: 52%; height: 22px; background: var(--lime); transform: rotate(-8deg); border-radius: 11px; }
+.n.new { color: var(--lime); }
+.nums .ic { font-size: 130px; }
+.caps { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 16px; }
+.cap b { display: block; font: 500 28px "IBM Plex Mono", monospace; letter-spacing: .06em; color: var(--lime); }
+.cap.old b { color: var(--soft); }
+.cap p { margin: 10px 0 0; font-size: 30px; line-height: 1.35; }
+.end { position: absolute; left: 64px; right: 64px; bottom: 150px; display: flex; align-items: center; gap: 26px; padding-top: 34px; border-top: 3px solid var(--cream); }
+.end img { width: 108px; height: 108px; border-radius: 50%; flex: none; }
+.end p { margin: 0; font: 800 46px/1.18 Sora; letter-spacing: -.02em; }
+.end p span { color: var(--lime); }
+.foot { position: absolute; left: 64px; right: 64px; bottom: 50px; display: flex; align-items: baseline; justify-content: space-between; }
+.sig { font: 400 56px Chewy, cursive; }
+.foot span:last-child { font: 500 26px "IBM Plex Mono", monospace; color: var(--soft); }
+</style>
+
+<div class="art">
+  <div class="label"><span>MCP VS API</span><span>AI, EXPLAINED / 01</span></div>
+  <div class="q">Connect 3 AI apps to 4 tools. How many integrations?</div>
+  <div class="nums">
+    <span class="n old">12</span>
+    <i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/arrow-right.svg)"></i>
+    <span class="n new">7</span>
+  </div>
+  <div class="caps">
+    <div class="cap old"><b>APIS ONLY · 3 × 4</b><p>Every app needs custom code for every tool.</p></div>
+    <div class="cap"><b>WITH MCP · 3 + 4</b><p>Each app speaks MCP once. Each tool gets one MCP server.</p></div>
+  </div>
+  <div class="end">
+    <img src="https://api.dicebear.com/9.x/notionists/svg?seed=Kai&backgroundColor=d4ff4f" alt="">
+    <p>MCP doesn't replace APIs.<br><span>It makes them reusable.</span></p>
+  </div>
+  <div class="foot"><span class="sig">nifail</span><span>modelcontextprotocol.io</span></div>
+</div>
