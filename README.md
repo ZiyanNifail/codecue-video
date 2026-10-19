@@ -209,10 +209,11 @@ Static 4:5 posts (1080×1350) for a personal-brand series about AI. Each one is 
 
 Character-driven story videos, such as `posts/02-hugging-face-incident/video/`, use the same page contract and recorder as the Codecue video. Sound comes from ElevenLabs.
 
-- **`story.js`:** the cue sheet. It holds the voices, the lines (each with what is said, what is shown on screen and the source), and the sound effects, each with a start time in ms. The page reads it, so the visuals and the audio share one timeline.
+- **`story.js`:** the script, in order. It holds the voices (each with an optional ElevenLabs model), the lines (narration, board posts and private thoughts, each with what is said, what is shown on screen and the source), and the sound effects. A narrator (George, on `eleven_multilingual_v2`) gives the context, and the narration doubles as on-screen subtitles.
 - **`node scripts/elevenlabs.mjs <story.js> <audioDir> [voices|sfx|all]`:** generates any missing clips. Files that already exist are skipped, so credits are only spent on new clips. It needs `ELEVENLABS_API_KEY`, kept in the git-ignored `.env`. The free plan can only use premade voices through the API.
+- **`node scripts/timeline.mjs <story.js> <audioDir>`:** lays the lines end to end from their real audio lengths, with each line's `gap` before it, and writes `timing.js`. Sound effects anchor to a line (`cue` plus `offset`). The page and the mixer both read `timing.js`, so editing a line never breaks the sync.
 - **`node scripts/record.mjs story.html out 30 1080 1350 1`:** records the video. Use 10 fps for a quick preview.
-- **`node scripts/mix.mjs <story.js> <audioDir> out/story.mp4 out/final.mp4 [voices|all]`:** places every clip at its cue time, adds a light radio filter to agent voices, normalises loudness and muxes the audio onto the video.
+- **`node scripts/mix.mjs <story.js> <audioDir> out/story.mp4 out/final.mp4 [voices|all]`:** places every clip at its time from `timing.js`, loops the ambient bed, normalises loudness and muxes the audio onto the video. There is no voice filter: a radio effect made the agents sound too robotic.
 - **Honesty rule:** characters only speak real, sourced lines. Private reasoning is shown as a dashed "private thought" bubble, and board posts are shown as posts. Faceless grey "ghost" posts show volume without inventing text.
 
 ## Files

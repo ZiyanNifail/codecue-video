@@ -1,0 +1,46 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Workflow vs agent · B · Editorial</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Sora:wght@400;600&display=swap">
+<style>
+/* B · Editorial: cream paper, serif headline, ink-blue labels, highlighter accent. 1080x1350 (4:5). Smallest text 26px. */
+:root { --paper: #f3eee4; --ink: #1b1a17; --muted: #6b655b; --rule: #d6cdbd; --blue: #2b4acb; --hi: #ffd66b; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: Sora, sans-serif; }
+.art { position: relative; width: 1080px; height: 1350px; overflow: hidden; padding: 60px 64px; box-sizing: border-box; }
+.top { display: flex; justify-content: space-between; font: 500 26px "IBM Plex Mono", monospace; letter-spacing: .08em; color: var(--muted); padding-bottom: 20px; border-bottom: 2px solid var(--ink); }
+h1 { margin: 40px 0 0; font: 400 140px/.92 "Instrument Serif", serif; letter-spacing: -.02em; }
+h1 i { color: var(--blue); }
+.lede { margin-top: 24px; font-size: 34px; line-height: 1.35; color: #3b3832; }
+.lede b { font-weight: 600; color: var(--ink); }
+.cols { display: grid; grid-template-columns: 1fr 1fr; margin-top: 40px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.col { padding: 28px 32px 30px 0; }
+.col + .col { padding: 28px 0 30px 32px; border-left: 1px solid var(--rule); }
+.tag { font: 500 26px "IBM Plex Mono", monospace; color: var(--blue); letter-spacing: .08em; }
+.term { font: 400 74px/1 "Instrument Serif", serif; margin-top: 6px; }
+.col p { margin: 16px 0 0; font-size: 29px; line-height: 1.32; }
+.band { margin-top: 36px; font: 400 52px/1.1 "Instrument Serif", serif; }
+.band mark { background: linear-gradient(transparent 55%, var(--hi) 55%); color: inherit; padding: 0 4px; }
+.say { position: absolute; left: 64px; right: 64px; bottom: 156px; display: flex; align-items: center; gap: 26px; }
+.say img { width: 110px; height: 110px; border-radius: 50%; flex: none; border: 2px solid var(--ink); }
+.say p { margin: 0; font: 600 29px/1.32 Sora; }
+.say small { display: block; margin-top: 4px; font: 500 26px "IBM Plex Mono", monospace; color: var(--muted); }
+.foot { position: absolute; left: 64px; right: 64px; bottom: 50px; display: flex; align-items: baseline; justify-content: space-between; padding-top: 18px; border-top: 2px solid var(--ink); }
+.sig { font: 400 52px Chewy, cursive; }
+.foot span:last-child { font: 500 26px "IBM Plex Mono", monospace; color: var(--muted); }
+</style>
+
+<div class="art">
+  <div class="top"><span>AI, EXPLAINED</span><span>NO. 03</span></div>
+  <h1>Not everything<br>needs an <i>agent.</i></h1>
+  <div class="lede">Most AI automations are better as a <b>plain workflow.</b> The difference is who decides the steps.</div>
+  <div class="cols">
+    <div class="col"><div class="tag">YOU DECIDE</div><div class="term">Workflow</div><p>Fixed steps in code. The AI fills each one in. Predictable and cheap.</p></div>
+    <div class="col"><div class="tag">THE AI DECIDES</div><div class="term">Agent</div><p>The AI chooses its next step and tools as it goes. Flexible, but slower and pricier.</p></div>
+  </div>
+  <div class="band">If you can draw the flowchart, <mark>build the workflow.</mark></div>
+  <div class="say">
+    <img src="https://api.dicebear.com/9.x/micah/svg?seed=Arif&backgroundColor=a8d8c8" alt="">
+    <p>"Agents can be used for open-ended problems where it's difficult or impossible to predict the required number of steps."<small>Anthropic, Building effective agents</small></p>
+  </div>
+  <div class="foot"><span class="sig">nifail</span><span>Avatars: Micah by Micah Lanier</span></div>
+</div>

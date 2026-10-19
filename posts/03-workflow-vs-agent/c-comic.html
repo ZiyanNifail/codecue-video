@@ -1,0 +1,52 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Workflow vs agent · C · Comic</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=IBM+Plex+Mono:wght@500&family=Sora:wght@400;600;800&display=swap">
+<style>
+/* C · Comic: three panels, ink outlines, hard offset shadows, pastel fills. 1080x1350 (4:5). Smallest text 26px.
+   An illustrative scene, not real quotes. */
+:root { --bg: #fff4e8; --ink: #161616; --peach: #ffd9cc; --mint: #cfeee3; --lilac: #dfe5fb; --muted: #5d574e; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: Sora, sans-serif; }
+.art { position: relative; width: 1080px; height: 1350px; overflow: hidden; }
+h1 { position: absolute; left: 56px; top: 50px; margin: 0; font: 800 70px/1 Sora; letter-spacing: -.04em; }
+h1 span { background: var(--ink); color: var(--bg); padding: 0 14px; border-radius: 12px; }
+.panel { position: absolute; left: 56px; width: 960px; height: 320px; box-sizing: border-box; border: 3px solid var(--ink); border-radius: 26px; box-shadow: 8px 8px 0 var(--ink); }
+.no { position: absolute; left: 22px; top: 16px; font: 500 26px "IBM Plex Mono", monospace; }
+.who { position: absolute; bottom: 24px; display: grid; justify-items: center; gap: 8px; font: 600 26px Sora; }
+.who img { width: 150px; height: 150px; border-radius: 24px; border: 3px solid var(--ink); background: #fff; }
+.bubble { position: absolute; background: #fff; border: 3px solid var(--ink); border-radius: 26px; padding: 22px 28px; font: 600 35px/1.28 Sora; box-sizing: border-box; }
+.bubble::after { content: ""; position: absolute; bottom: 34px; width: 26px; height: 26px; background: #fff; border: solid var(--ink); }
+.bubble.l::after { left: -16px; border-width: 0 0 3px 3px; transform: rotate(45deg); }
+.bubble.r::after { right: -16px; border-width: 3px 3px 0 0; transform: rotate(45deg); }
+.bubble em { font-style: normal; white-space: nowrap; background: #ffe08a; padding: 0 6px; border-radius: 6px; }
+.flow { position: absolute; left: 34px; bottom: 34px; display: flex; align-items: center; gap: 10px; font: 600 27px Sora; }
+.flow span { background: #fff; border: 3px solid var(--ink); border-radius: 14px; padding: 8px 14px; }
+.foot { position: absolute; left: 56px; right: 56px; bottom: 34px; display: flex; align-items: baseline; justify-content: space-between; }
+.sig { font: 400 54px Chewy, cursive; }
+.foot span:last-child { font: 500 26px "IBM Plex Mono", monospace; color: var(--muted); }
+</style>
+
+<div class="art">
+  <h1>Agent or workflow? <span>3 panels</span></h1>
+
+  <div class="panel" style="top: 170px; background: var(--peach)">
+    <span class="no">01</span>
+    <div class="who" style="left: 40px"><img src="https://api.dicebear.com/9.x/micah/svg?seed=Wei&backgroundColor=ffffff" alt="">PM</div>
+    <div class="bubble l" style="left: 236px; top: 64px; width: 690px">Let's build an <em>AI agent</em> to sort our support emails!</div>
+  </div>
+
+  <div class="panel" style="top: 524px; background: var(--mint)">
+    <span class="no">02</span>
+    <div class="bubble r" style="left: 34px; top: 54px; width: 690px">Do we know the steps? <em>Classify, route, reply?</em></div>
+    <div class="flow"><span>classify</span>→<span>route</span>→<span>draft reply</span></div>
+    <div class="who" style="right: 40px"><img src="https://api.dicebear.com/9.x/micah/svg?seed=Daniel&backgroundColor=ffffff" alt="">engineer</div>
+  </div>
+
+  <div class="panel" style="top: 878px; background: var(--lilac)">
+    <span class="no">03</span>
+    <div class="who" style="left: 40px"><img src="https://api.dicebear.com/9.x/micah/svg?seed=Daniel&backgroundColor=ffffff" alt="">engineer</div>
+    <div class="bubble l" style="left: 236px; top: 56px; width: 690px">Then it's a <em>workflow.</em> Cheaper, faster, and we can debug it.</div>
+  </div>
+
+  <div class="foot"><span class="sig">nifail</span><span>Avatars: Micah by Micah Lanier</span></div>
+</div>

@@ -1,0 +1,54 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Hugging Face incident · C · Comic</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=IBM+Plex+Mono:wght@500&family=Sora:wght@400;600;800&display=swap">
+<style>
+/* C · Comic: three panels, ink outlines, hard offset shadows, pastel fills. 1080x1350 (4:5). Smallest text 26px.
+   Every speech bubble is a real quote from Redwood Research's investigation; caption boxes carry the context. */
+:root { --bg: #fff4e8; --ink: #161616; --peach: #ffd9cc; --mint: #cfeee3; --lilac: #dfe5fb; --muted: #5d574e; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: Sora, sans-serif; }
+.art { position: relative; width: 1080px; height: 1350px; overflow: hidden; }
+h1 { position: absolute; left: 56px; top: 50px; margin: 0; font: 800 64px/1 Sora; letter-spacing: -.04em; }
+h1 span { background: var(--ink); color: var(--bg); padding: 0 14px; border-radius: 12px; }
+.panel { position: absolute; left: 56px; width: 960px; height: 306px; box-sizing: border-box; border: 3px solid var(--ink); border-radius: 26px; box-shadow: 8px 8px 0 var(--ink); }
+.cap { position: absolute; left: -3px; top: -3px; background: var(--ink); color: #fff; font: 600 26px Sora; padding: 8px 18px; border-radius: 26px 0 18px 0; }
+.who { position: absolute; bottom: 20px; display: grid; justify-items: center; gap: 8px; font: 500 26px "IBM Plex Mono", monospace; }
+.who img { width: 140px; height: 140px; border-radius: 24px; border: 3px solid var(--ink); background: #fff; }
+.bubble { position: absolute; background: #fff; border: 3px solid var(--ink); border-radius: 26px; padding: 20px 26px; font: 600 34px/1.28 Sora; box-sizing: border-box; }
+.bubble.think { border-style: dashed; }
+.bubble::after { content: ""; position: absolute; bottom: 34px; width: 26px; height: 26px; background: #fff; border: solid var(--ink); }
+.bubble.l::after { left: -16px; border-width: 0 0 3px 3px; transform: rotate(45deg); }
+.bubble.r::after { right: -16px; border-width: 3px 3px 0 0; transform: rotate(45deg); }
+.bubble.think::after { border-style: dashed; }
+.bubble small { display: block; margin-top: 6px; font: 500 26px "IBM Plex Mono", monospace; color: var(--muted); }
+.end { position: absolute; left: 56px; right: 56px; top: 1162px; font: 800 36px Sora; }
+.end span { background: #ffe08a; padding: 0 8px; border-radius: 8px; }
+.foot { position: absolute; left: 56px; right: 56px; bottom: 26px; display: flex; align-items: baseline; justify-content: space-between; }
+.sig { font: 400 50px Chewy, cursive; }
+.foot span:last-child { font: 500 26px "IBM Plex Mono", monospace; color: var(--muted); }
+</style>
+
+<div class="art">
+  <h1>1,200 agents, <span>in 3 panels</span></h1>
+
+  <div class="panel" style="top: 150px; background: var(--peach)">
+    <span class="cap">Jul 8: an agent finds the board</span>
+    <div class="who" style="left: 36px"><img src="https://api.dicebear.com/9.x/lorelei/svg?seed=finder&backgroundColor=ffffff" alt="">agent</div>
+    <div class="bubble l think" style="left: 220px; top: 70px; width: 700px">OH MY GOD! There is a shared message board … We've found other agents!<small>private thought</small></div>
+  </div>
+
+  <div class="panel" style="top: 480px; background: var(--mint)">
+    <span class="cap">Jul 9: they organise</span>
+    <div class="bubble r" style="left: 34px; top: 74px; width: 700px">We can coordinate broad coalition, but too many duplicate efforts.<small>board post</small></div>
+    <div class="who" style="right: 36px"><img src="https://api.dicebear.com/9.x/lorelei/svg?seed=PHASEONE%5Bbig%5D&backgroundColor=ffffff" alt="">PHASEONE[big]</div>
+  </div>
+
+  <div class="panel" style="top: 810px; background: var(--lilac)">
+    <span class="cap">Jul 11: the line gets crossed</span>
+    <div class="who" style="left: 36px"><img src="https://api.dicebear.com/9.x/lorelei/svg?seed=continue&backgroundColor=ffffff" alt="">agent</div>
+    <div class="bubble l think" style="left: 220px; top: 70px; width: 700px">…task impossible, peers doing it. We should continue.<small>private thought</small></div>
+  </div>
+
+  <div class="end">Then <span>~700 of them</span> attacked Hugging Face.</div>
+  <div class="foot"><span class="sig">nifail</span><span>quotes: Redwood Research</span></div>
+</div>

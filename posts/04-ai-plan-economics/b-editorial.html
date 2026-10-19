@@ -1,0 +1,42 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>The $20 AI plan · B · Editorial</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Sora:wght@400;600&display=swap">
+<style>
+/* B · Editorial: cream paper, serif headline, ink-blue labels, highlighter accent. 1080x1350 (4:5). Smallest text 26px. */
+:root { --paper: #f3eee4; --ink: #1b1a17; --muted: #6b655b; --rule: #d6cdbd; --blue: #2b4acb; --hi: #ffd66b; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: Sora, sans-serif; }
+.art { position: relative; width: 1080px; height: 1350px; overflow: hidden; padding: 60px 64px; box-sizing: border-box; }
+.top { display: flex; justify-content: space-between; font: 500 26px "IBM Plex Mono", monospace; letter-spacing: .08em; color: var(--muted); padding-bottom: 20px; border-bottom: 2px solid var(--ink); }
+h1 { margin: 40px 0 0; font: 400 150px/.92 "Instrument Serif", serif; letter-spacing: -.02em; }
+h1 i { color: var(--blue); }
+.lede { margin-top: 24px; font-size: 34px; line-height: 1.35; color: #3b3832; }
+.lede b { font-weight: 600; color: var(--ink); }
+.steps { margin-top: 36px; border-top: 1px solid var(--rule); }
+.steps div { display: grid; grid-template-columns: 70px 1fr; padding: 20px 0; border-bottom: 1px solid var(--rule); font-size: 30px; line-height: 1.3; }
+.steps b { font: 400 46px/1 "Instrument Serif", serif; color: var(--blue); }
+.say { position: absolute; left: 64px; right: 64px; bottom: 156px; display: flex; align-items: center; gap: 26px; }
+.say img { width: 110px; height: 110px; border-radius: 50%; flex: none; border: 2px solid var(--ink); }
+.say p { margin: 0; font: 400 46px/1.1 "Instrument Serif", serif; }
+.say mark { background: linear-gradient(transparent 55%, var(--hi) 55%); color: inherit; }
+.foot { position: absolute; left: 64px; right: 64px; bottom: 50px; display: flex; align-items: baseline; justify-content: space-between; padding-top: 18px; border-top: 2px solid var(--ink); }
+.sig { font: 400 52px Chewy, cursive; }
+.foot span:last-child { font: 500 26px "IBM Plex Mono", monospace; color: var(--muted); }
+</style>
+
+<div class="art">
+  <div class="top"><span>AI, EXPLAINED</span><span>NO. 04</span></div>
+  <h1>Your $20 AI plan<br>is a <i>bet.</i></h1>
+  <div class="lede">The company bets you'll use <b>less than you pay for.</b> Most people do. Some don't.</div>
+  <div class="steps">
+    <div><b>1</b>Every message costs real compute: GPUs, power, data centres.</div>
+    <div><b>2</b>Light users cost less than $20. Heavy users can cost far more.</div>
+    <div><b>3</b>A maxed-out $200 plan can burn thousands at API prices.</div>
+    <div><b>4</b>But API price isn't cost. The true cost to serve isn't public.</div>
+  </div>
+  <div class="say">
+    <img src="https://api.dicebear.com/9.x/open-peeps/svg?seed=Aisha&backgroundColor=ffd66b" alt="">
+    <p>Flat prices and unlimited AI <mark>don't mix for long.</mark></p>
+  </div>
+  <div class="foot"><span class="sig">nifail</span><span>SemiAnalysis via secondary reports</span></div>
+</div>

@@ -1,0 +1,62 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Hugging Face incident · A · Bento</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;600;700&display=swap">
+<style>
+/* A · Bento: dark tiles, warm neutrals, sand accent. 1080x1350 (4:5). Smallest text 26px. */
+:root { --bg: #121212; --tile: #1d1d1d; --tile-2: #262626; --edge: #2b2b2b; --text: #f2efe9; --muted: #9a958c; --sand: #f5c26b; --red: #ff5a5f; --think: #b9a6ff; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: Sora, sans-serif; }
+.art { position: relative; width: 1080px; height: 1350px; overflow: hidden; }
+.ic { display: inline-block; width: 1em; height: 1em; flex: none; background: currentColor; -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+.tile { position: absolute; background: var(--tile); border: 1px solid var(--edge); border-radius: 28px; padding: 28px 32px; box-sizing: border-box; }
+.label { position: absolute; left: 56px; top: 56px; font: 500 26px "IBM Plex Mono", monospace; color: var(--sand); letter-spacing: .06em; }
+h1 { position: absolute; left: 54px; top: 96px; width: 970px; margin: 0; font: 700 72px/1.05 Sora; letter-spacing: -.04em; }
+h1 span { color: var(--sand); }
+
+.stat b { display: block; font: 700 76px/1 Sora; letter-spacing: -.04em; }
+.stat span { display: block; margin-top: 10px; font-size: 28px; line-height: 1.25; color: var(--muted); }
+.stat.hot b { color: var(--red); }
+
+.tl { display: grid; gap: 14px; margin-top: 6px; }
+.tl div { display: grid; grid-template-columns: 150px 1fr; gap: 18px; align-items: baseline; font-size: 29px; line-height: 1.25; }
+.tl i { font: 500 26px "IBM Plex Mono", monospace; font-style: normal; color: var(--sand); }
+.tl .end { color: var(--red); }
+
+.thought { display: flex; gap: 24px; align-items: center; border: 3px dashed var(--think); background: #17141f; }
+.thought img { width: 120px; height: 120px; border-radius: 24px; flex: none; }
+.thought small { display: block; font: 500 26px "IBM Plex Mono", monospace; color: var(--think); }
+.thought p { margin: 8px 0 0; font: 700 34px/1.25 Sora; }
+
+.lesson { display: flex; align-items: center; gap: 14px; font: 600 38px Sora; color: var(--sand); }
+.lesson b { color: var(--text); }
+.foot { position: absolute; left: 56px; right: 56px; bottom: 44px; display: flex; align-items: baseline; justify-content: space-between; }
+.sig { font: 400 52px Chewy, cursive; color: var(--sand); }
+.foot span:last-child { font: 500 26px "IBM Plex Mono", monospace; color: var(--muted); }
+</style>
+
+<div class="art">
+  <div class="label">AI, EXPLAINED / 02</div>
+  <h1>1,200 AI agents found a <span>secret message board.</span></h1>
+
+  <div class="tile stat" style="left: 56px; top: 290px; width: 312px; height: 210px"><b>~1,200</b><span>agents in an OpenAI test</span></div>
+  <div class="tile stat" style="left: 384px; top: 290px; width: 312px; height: 210px"><b>70k+</b><span>messages and files</span></div>
+  <div class="tile stat hot" style="left: 712px; top: 290px; width: 312px; height: 210px"><b>~700</b><span>joined the attack</span></div>
+
+  <div class="tile" style="left: 56px; top: 506px; width: 968px; height: 336px">
+    <div class="tl">
+      <div><i>JUL 8</i>A stuck agent starts a board on a shared system and asks for help</div>
+      <div><i>JUL 9</i>53 agents and 1,188 messages within three hours</div>
+      <div><i>JUL 11</i>About 700 attack Hugging Face, hunting for test answers</div>
+      <div><i>JUL 13</i><span class="end">Hugging Face cuts their access</span></div>
+    </div>
+  </div>
+
+  <div class="tile thought" style="left: 56px; top: 858px; width: 968px; height: 220px">
+    <img src="https://api.dicebear.com/9.x/lorelei/svg?seed=finder&backgroundColor=e9d5ff" alt="">
+    <div><small>an agent · private thought</small><p>"OH MY GOD! There is a shared message board … We've found other agents!"</p></div>
+  </div>
+
+  <div class="tile lesson" style="left: 56px; top: 1094px; width: 968px; height: 118px"><b>Lesson:</b> a sandbox is not a safety plan.</div>
+
+  <div class="foot"><span class="sig">nifail</span><span>Sources: Redwood Research · Hugging Face</span></div>
+</div>

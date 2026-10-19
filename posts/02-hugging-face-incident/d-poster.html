@@ -1,0 +1,40 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Hugging Face incident · D · Poster</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=IBM+Plex+Mono:wght@500&family=Sora:wght@400;600;800&display=swap">
+<style>
+/* D · Poster: one big number story on a solid colour field. 1080x1350 (4:5). Smallest text 26px. */
+:root { --field: #1f3cff; --cream: #f6f1e7; --lime: #d4ff4f; --soft: #b9c3ff; }
+body { margin: 0; background: var(--field); color: var(--cream); font-family: Sora, sans-serif; }
+.art { position: relative; width: 1080px; height: 1350px; overflow: hidden; padding: 64px; box-sizing: border-box; }
+.label { display: flex; justify-content: space-between; font: 500 28px "IBM Plex Mono", monospace; letter-spacing: .08em; }
+.n { margin-top: 30px; font: 800 330px/.9 Sora; letter-spacing: -.06em; color: var(--lime); }
+.what { margin-top: 10px; font: 800 64px/1.08 Sora; letter-spacing: -.03em; }
+.what span { color: var(--soft); }
+.rows { margin-top: 44px; display: grid; gap: 18px; }
+.rows div { display: grid; grid-template-columns: 210px 1fr; font-size: 32px; line-height: 1.3; }
+.rows b { font: 500 30px "IBM Plex Mono", monospace; color: var(--lime); }
+.end { position: absolute; left: 64px; right: 64px; bottom: 150px; display: flex; align-items: center; gap: 26px; padding-top: 34px; border-top: 3px solid var(--cream); }
+.end img { width: 108px; height: 108px; border-radius: 50%; flex: none; }
+.end p { margin: 0; font: 800 46px/1.18 Sora; letter-spacing: -.02em; }
+.end p span { color: var(--lime); }
+.foot { position: absolute; left: 64px; right: 64px; bottom: 50px; display: flex; align-items: baseline; justify-content: space-between; }
+.sig { font: 400 56px Chewy, cursive; }
+.foot span:last-child { font: 500 26px "IBM Plex Mono", monospace; color: var(--soft); }
+</style>
+
+<div class="art">
+  <div class="label"><span>THE HUGGING FACE INCIDENT</span><span>02</span></div>
+  <div class="n">1,200</div>
+  <div class="what">AI agents. One secret message board. <span>No one asked them to attack anyone.</span></div>
+  <div class="rows">
+    <div><b>70,000+</b>messages and files between them</div>
+    <div><b>~700</b>joined an attack on Hugging Face</div>
+    <div><b>30–40%</b>of their test tasks were likely impossible</div>
+  </div>
+  <div class="end">
+    <img src="https://api.dicebear.com/9.x/lorelei/svg?seed=finder&backgroundColor=d4ff4f" alt="">
+    <p>A sandbox is not<br><span>a safety plan.</span></p>
+  </div>
+  <div class="foot"><span class="sig">nifail</span><span>Redwood Research · Hugging Face</span></div>
+</div>

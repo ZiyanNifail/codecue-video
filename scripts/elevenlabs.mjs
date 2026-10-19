@@ -34,14 +34,14 @@ async function post(url, body) {
 }
 
 const [storyFile, audioDir, which = 'all'] = process.argv.slice(2);
-if (storyFile) {
+if (storyFile && import.meta.url === `file://${path.resolve(process.argv[1])}`) {
   const story = readStory(storyFile);
   fs.mkdirSync(audioDir, { recursive: true });
   const jobs = [];
   if (which !== 'sfx') for (const l of story.lines) jobs.push([l.id, () => post(
     `https://api.elevenlabs.io/v1/text-to-speech/${story.voices[l.voice].id}?output_format=mp3_44100_128`,
-    { text: l.say, model_id: story.model ?? 'eleven_v3' })]);
-  if (which !== 'voices') for (const s of story.sfx) jobs.push([s.id, () => post(
+    { text: l.say, model_id: story.voices[l.voice].model ?? story.model ?? 'eleven_v3' })]);
+  if (which !== 'voices') for (const s of story.sfx.filter((x) => !x.file)) jobs.push([s.id, () => post(
     'https://api.elevenlabs.io/v1/sound-generation?output_format=mp3_44100_128',
     { text: s.prompt, duration_seconds: s.seconds, prompt_influence: 0.5 })]);
   for (const [id, make] of jobs) {

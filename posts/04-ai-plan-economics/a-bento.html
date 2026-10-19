@@ -1,0 +1,57 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>The $20 AI plan · A · Bento</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;600;700&display=swap">
+<style>
+/* A · Bento: dark tiles, warm neutrals, sand accent. 1080x1350 (4:5). Smallest text 26px.
+   The light/heavy bars are illustrative, not measured costs. */
+:root { --bg: #121212; --tile: #1d1d1d; --tile-2: #262626; --edge: #2b2b2b; --text: #f2efe9; --muted: #9a958c; --sand: #f5c26b; --red: #ff5a5f; --green: #4cc38a; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: Sora, sans-serif; }
+.art { position: relative; width: 1080px; height: 1350px; overflow: hidden; }
+.tile { position: absolute; background: var(--tile); border: 1px solid var(--edge); border-radius: 28px; padding: 28px 32px; box-sizing: border-box; }
+.label { position: absolute; left: 56px; top: 56px; font: 500 26px "IBM Plex Mono", monospace; color: var(--sand); letter-spacing: .06em; }
+h1 { position: absolute; left: 54px; top: 96px; width: 980px; margin: 0; font: 700 80px/1.04 Sora; letter-spacing: -.045em; }
+h1 span { color: var(--sand); }
+
+.users { display: grid; gap: 26px; }
+.user { display: grid; grid-template-columns: 100px 1fr; gap: 22px; align-items: center; }
+.user img { width: 100px; height: 100px; border-radius: 22px; }
+.user h3 { margin: 0; font: 600 30px Sora; }
+.user h3 i { font: 500 26px "IBM Plex Mono", monospace; font-style: normal; color: var(--muted); margin-left: 10px; }
+.bar { position: relative; height: 34px; margin-top: 12px; border-radius: 10px; background: var(--tile-2); }
+.bar b { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 10px; }
+.bar .pay { position: absolute; top: -8px; bottom: -8px; width: 4px; background: var(--text); }
+.legend { margin-top: 22px; display: flex; gap: 30px; font: 500 26px "IBM Plex Mono", monospace; color: var(--muted); }
+.legend span::before { content: ""; display: inline-block; width: 18px; height: 18px; border-radius: 4px; margin-right: 10px; vertical-align: -2px; background: var(--c); }
+
+.stat b { display: block; font: 700 60px/1 Sora; letter-spacing: -.03em; color: var(--sand); }
+.stat p { margin: 12px 0 0; font-size: 28px; line-height: 1.3; color: var(--muted); }
+.stat p strong { color: var(--text); font-weight: 600; }
+.warn b { color: var(--text); font-size: 40px; }
+
+.foot { position: absolute; left: 56px; right: 56px; bottom: 44px; display: flex; align-items: baseline; justify-content: space-between; }
+.sig { font: 400 52px Chewy, cursive; color: var(--sand); }
+.foot span:last-child { font: 500 26px "IBM Plex Mono", monospace; color: var(--muted); }
+</style>
+
+<div class="art">
+  <div class="label">AI, EXPLAINED / 04</div>
+  <h1>Same $20 plan. <span>Very different bills.</span></h1>
+
+  <div class="tile" style="left: 56px; top: 290px; width: 968px; height: 420px">
+    <div class="users">
+      <div class="user"><img src="https://api.dicebear.com/9.x/open-peeps/svg?seed=Aisha&backgroundColor=cfeee3" alt="">
+        <div><h3>Light user<i>a few chats a day</i></h3><div class="bar"><b style="width: 18%; background: var(--green)"></b><span class="pay" style="left: 34%"></span></div></div></div>
+      <div class="user"><img src="https://api.dicebear.com/9.x/open-peeps/svg?seed=Ben&backgroundColor=ffd9cc" alt="">
+        <div><h3>Heavy user<i>coding agents all day</i></h3><div class="bar"><b style="width: 100%; background: var(--red)"></b><span class="pay" style="left: 34%"></span></div></div></div>
+    </div>
+    <div class="legend"><span style="--c: var(--text)">pays $20</span><span style="--c: var(--red)">usage at API prices (illustrative)</span></div>
+  </div>
+
+  <div class="tile stat" style="left: 56px; top: 726px; width: 476px; height: 300px"><b>$1,000s</b><p>of usage a month at API prices, from a <strong>maxed-out $200 plan</strong> (SemiAnalysis)</p></div>
+  <div class="tile stat warn" style="left: 548px; top: 726px; width: 476px; height: 300px"><b>Price ≠ cost</b><p>API prices include margin. The real cost to serve <strong>isn't public.</strong></p></div>
+
+  <div class="tile stat" style="left: 56px; top: 1042px; width: 968px; height: 170px"><p style="margin: 0; font: 600 34px/1.3 Sora; color: var(--text)">Like a gym: light users quietly cover heavy ones. That's why <span style="color: var(--sand)">usage limits keep tightening.</span></p></div>
+
+  <div class="foot"><span class="sig">nifail</span><span>SemiAnalysis via secondary reports</span></div>
+</div>

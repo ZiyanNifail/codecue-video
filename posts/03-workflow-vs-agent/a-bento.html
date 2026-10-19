@@ -1,0 +1,81 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Workflow vs agent · A · Bento</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;600;700&display=swap">
+<style>
+/* A · Bento: dark tiles, warm neutrals, sand accent. 1080x1350 (4:5). Smallest text 26px. */
+:root { --bg: #121212; --tile: #1d1d1d; --tile-2: #262626; --edge: #2b2b2b; --text: #f2efe9; --muted: #9a958c; --sand: #f5c26b; --green: #4cc38a; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: Sora, sans-serif; }
+.art { position: relative; width: 1080px; height: 1350px; overflow: hidden; }
+.ic { display: inline-block; width: 1em; height: 1em; flex: none; background: currentColor; -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+.tile { position: absolute; background: var(--tile); border: 1px solid var(--edge); border-radius: 28px; padding: 28px 32px; box-sizing: border-box; }
+.label { position: absolute; left: 56px; top: 56px; font: 500 26px "IBM Plex Mono", monospace; color: var(--sand); letter-spacing: .06em; }
+h1 { position: absolute; left: 52px; top: 92px; margin: 0; font: 700 112px/1 Sora; letter-spacing: -.05em; }
+h1 span { color: var(--muted); font-weight: 400; }
+.sub { position: absolute; left: 56px; top: 222px; font-size: 34px; color: var(--muted); }
+
+.kind { display: flex; align-items: center; gap: 16px; font: 700 46px Sora; letter-spacing: -.03em; }
+.kind .badge { width: 60px; height: 60px; border-radius: 18px; display: grid; place-items: center; background: var(--tile-2); font-size: 32px; }
+.kind.agent .badge { background: var(--sand); color: var(--bg); }
+.what { margin-top: 14px; font: 600 32px/1.25 Sora; }
+.steps { margin-top: 22px; display: grid; gap: 10px; }
+.steps span { display: flex; align-items: center; gap: 12px; font: 500 27px "IBM Plex Mono", monospace; color: #d8d3ca; background: var(--tile-2); border-radius: 12px; padding: 8px 14px; }
+.steps span i { font-style: normal; color: var(--muted); }
+.loop { margin-top: 22px; position: relative; height: 196px; }
+.loop span { position: absolute; font: 500 27px "IBM Plex Mono", monospace; background: var(--tile-2); border-radius: 12px; padding: 8px 14px; color: #d8d3ca; }
+.loop .ic { position: absolute; left: 150px; top: 54px; font-size: 90px; color: var(--sand); }
+
+.q { font: 600 34px Sora; display: flex; align-items: center; gap: 14px; }
+.q .ic { color: var(--sand); }
+.ans { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+.ans div { background: var(--tile-2); border-radius: 18px; padding: 18px 22px; font-size: 28px; line-height: 1.3; color: var(--muted); }
+.ans b { display: block; font: 700 32px Sora; color: var(--text); margin-bottom: 4px; }
+.ans div:last-child b { color: var(--sand); }
+
+.quote { display: flex; align-items: center; gap: 24px; }
+.quote img { width: 104px; height: 104px; border-radius: 22px; flex: none; }
+.quote p { margin: 0; font: 600 31px/1.3 Sora; }
+.quote small { display: block; margin-top: 6px; font: 500 26px "IBM Plex Mono", monospace; color: var(--muted); }
+
+.foot { position: absolute; left: 56px; right: 56px; bottom: 44px; display: flex; align-items: baseline; justify-content: space-between; }
+.sig { font: 400 52px Chewy, cursive; color: var(--sand); }
+.foot span:last-child { font: 500 26px "IBM Plex Mono", monospace; color: var(--muted); }
+</style>
+
+<div class="art">
+  <div class="label">AI, EXPLAINED / 03</div>
+  <h1>Workflow <span>vs</span> agent</h1>
+  <div class="sub">Who decides the steps: you, or the AI?</div>
+
+  <div class="tile" style="left: 56px; top: 290px; width: 476px; height: 420px">
+    <div class="kind"><span class="badge"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/list-ordered.svg)"></i></span>Workflow</div>
+    <div class="what">You write the steps</div>
+    <div class="steps"><span><i>1</i>classify email</span><span><i>2</i>route to team</span><span><i>3</i>draft a reply</span></div>
+  </div>
+  <div class="tile" style="left: 548px; top: 290px; width: 476px; height: 420px">
+    <div class="kind agent"><span class="badge"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/refresh-cw.svg)"></i></span>Agent</div>
+    <div class="what">The AI picks the steps</div>
+    <div class="loop">
+      <span style="left: 0; top: 0">think</span><span style="right: 0; top: 0">use a tool</span>
+      <i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/refresh-cw.svg)"></i>
+      <span style="left: 0; bottom: 0">check result</span><span style="right: 0; bottom: 0">repeat?</span>
+    </div>
+  </div>
+
+  <div class="tile" style="left: 56px; top: 726px; width: 968px; height: 300px">
+    <div class="q"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/circle-help.svg)"></i>Can you draw the flowchart?</div>
+    <div class="ans">
+      <div><b>Yes: workflow</b>Cheaper, faster, the same every run, easy to debug.</div>
+      <div><b>No: agent</b>For open-ended tasks. Costs more, errors can compound.</div>
+    </div>
+  </div>
+
+  <div class="tile" style="left: 56px; top: 1042px; width: 968px; height: 172px; padding: 22px 30px">
+    <div class="quote">
+      <img src="https://api.dicebear.com/9.x/micah/svg?seed=Kai&backgroundColor=f5c26b" alt="">
+      <p>"…finding the simplest solution possible, and only increasing complexity when needed."<small>Anthropic, Building effective agents</small></p>
+    </div>
+  </div>
+
+  <div class="foot"><span class="sig">nifail</span><span>Avatars: Micah by Micah Lanier</span></div>
+</div>
