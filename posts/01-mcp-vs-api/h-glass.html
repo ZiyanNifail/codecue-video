@@ -1,0 +1,65 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>MCP vs API · H · Glass keynote</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=Inter:wght@400;500;600;800&display=swap">
+<style>
+/* H · Glass keynote: dark gradient stage, glowing colour blobs, frosted glass cards, gradient headline. 1080x1350 (4:5). Smallest text 26px. */
+:root { --text: #f5f5fa; --muted: #a9abc4; --a: #7c5cff; --b: #22d3ee; --c: #f472b6; }
+body { margin: 0; background: #07070f; color: var(--text); font-family: Inter, sans-serif; }
+.art { position: relative; width: 1080px; height: 1350px; overflow: hidden; background: radial-gradient(120% 80% at 50% 0%, #17163a 0%, #07070f 60%); }
+.blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .55; }
+.ic { display: inline-block; width: 1em; height: 1em; flex: none; background: currentColor; -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+.eyebrow { position: absolute; left: 0; right: 0; top: 70px; text-align: center; font: 600 26px Inter; letter-spacing: .3em; color: var(--muted); }
+h1 { position: absolute; left: 60px; right: 60px; top: 120px; margin: 0; text-align: center; font: 800 96px/1.02 Inter; letter-spacing: -.045em;
+  background: linear-gradient(100deg, #fff 20%, #c4b5fd 55%, #67e8f9 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.glass { position: absolute; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); border-radius: 36px;
+  backdrop-filter: blur(24px) saturate(140%); -webkit-backdrop-filter: blur(24px) saturate(140%); box-shadow: 0 30px 80px -30px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.18); padding: 34px 36px; box-sizing: border-box; }
+.glass .k { display: flex; align-items: center; gap: 16px; font: 800 52px Inter; letter-spacing: -.03em; }
+.glass .k .ic { font-size: 46px; }
+.glass p { margin: 14px 0 0; font: 400 30px/1.35 Inter; color: #d6d7ea; }
+.hub { position: absolute; left: 50%; top: 790px; width: 150px; height: 150px; margin-left: -75px; border-radius: 40px; display: grid; place-items: center;
+  font: 800 38px Inter; background: linear-gradient(135deg, var(--a), var(--b)); box-shadow: 0 0 80px 10px rgba(124,92,255,.55); }
+.spokes { position: absolute; left: 0; top: 700px; }
+.spokes line { stroke-width: 3; stroke: url(#g); }
+.pill { position: absolute; padding: 12px 22px; border-radius: 999px; font: 500 28px Inter; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); }
+.stat { position: absolute; left: 60px; right: 60px; top: 1030px; display: flex; justify-content: center; gap: 30px; }
+.stat div { text-align: center; }
+.stat b { display: block; font: 800 80px/1 Inter; letter-spacing: -.04em; }
+.stat .old b { color: #6b6d88; text-decoration: line-through; text-decoration-thickness: 6px; }
+.stat .new b { background: linear-gradient(135deg, #c4b5fd, #67e8f9); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.stat span { font: 500 26px Inter; color: var(--muted); }
+.foot { position: absolute; left: 60px; right: 60px; bottom: 44px; display: flex; align-items: center; justify-content: space-between; }
+.who { display: flex; align-items: center; gap: 16px; }
+.who img { width: 74px; height: 74px; border-radius: 50%; border: 2px solid rgba(255,255,255,.3); }
+.sig { font: 400 52px Chewy, cursive; }
+.foot > span { font: 500 26px Inter; color: var(--muted); }
+</style>
+
+<div class="art">
+  <div class="blob" style="left: -120px; top: 380px; width: 520px; height: 520px; background: var(--a)"></div>
+  <div class="blob" style="right: -140px; top: 520px; width: 560px; height: 560px; background: var(--b)"></div>
+  <div class="blob" style="left: 300px; top: 980px; width: 460px; height: 380px; background: var(--c); opacity: .35"></div>
+
+  <div class="eyebrow">AI, EXPLAINED · 01</div>
+  <h1>MCP doesn't replace your API.</h1>
+
+  <div class="glass" style="left: 60px; top: 380px; width: 466px; height: 290px">
+    <div class="k"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/plug.svg)"></i>API</div>
+    <p>A door into one service. Built for developers.</p>
+  </div>
+  <div class="glass" style="left: 554px; top: 380px; width: 466px; height: 290px">
+    <div class="k"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/cable.svg)"></i>MCP</div>
+    <p>One plug any AI app can use. Built on top of APIs.</p>
+  </div>
+
+  <svg class="spokes" width="1080" height="330"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>
+    <line x1="230" y1="40" x2="540" y2="165"/><line x1="230" y1="165" x2="540" y2="165"/><line x1="230" y1="290" x2="540" y2="165"/>
+    <line x1="540" y1="165" x2="860" y2="20"/><line x1="540" y1="165" x2="860" y2="120"/><line x1="540" y1="165" x2="860" y2="215"/><line x1="540" y1="165" x2="860" y2="310"/></svg>
+  <span class="pill" style="left: 70px; top: 715px">chat app</span><span class="pill" style="left: 110px; top: 840px">IDE</span><span class="pill" style="left: 80px; top: 965px">agent</span>
+  <span class="pill" style="right: 70px; top: 695px">GitHub</span><span class="pill" style="right: 110px; top: 795px">Slack</span><span class="pill" style="right: 80px; top: 890px">Notion</span><span class="pill" style="right: 100px; top: 985px">database</span>
+  <div class="hub">MCP</div>
+
+  <div class="stat"><div class="old"><b>12</b><span>integrations, APIs only</span></div><div class="new"><b>7</b><span>with MCP</span></div></div>
+
+  <div class="foot"><div class="who"><img src="https://api.dicebear.com/9.x/micah/svg?seed=Kai&backgroundColor=c4b5fd" alt=""><span class="sig">nifail</span></div><span>Avatars: Micah by Micah Lanier</span></div>
+</div>

@@ -1,0 +1,57 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>MCP vs API · J · Chat thread</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=Inter:wght@400;500;600;800&display=swap">
+<style>
+/* J · Chat thread: the explanation plays out as a generic messaging-app conversation (no real app branding).
+   Fictional characters, illustrative dialogue. 1080x1350 (4:5). Smallest text 26px. */
+:root { --bg: #e9edf3; --phone: #ffffff; --me: #2563eb; --them: #f1f3f7; --ink: #111827; --muted: #6b7280; --hi: #fde68a; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: Inter, sans-serif; }
+.art { position: relative; width: 1080px; height: 1350px; overflow: hidden; background: linear-gradient(160deg, #e0e7ff, #f1f5f9 50%, #fce7f3); }
+.ic { display: inline-block; width: 1em; height: 1em; flex: none; background: currentColor; -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+h1 { position: absolute; left: 70px; right: 70px; top: 54px; margin: 0; font: 800 66px/1.06 Inter; letter-spacing: -.035em; }
+h1 span { color: var(--me); }
+.phone { position: absolute; left: 90px; right: 90px; top: 230px; bottom: 130px; background: var(--phone); border-radius: 56px; box-shadow: 0 40px 90px -40px rgba(30,41,59,.45), 0 0 0 12px #111827; overflow: hidden; }
+.head { display: flex; align-items: center; gap: 18px; padding: 30px 34px 22px; border-bottom: 1px solid #e5e7eb; }
+.head .ava { display: flex; }
+.head .ava img { width: 66px; height: 66px; border-radius: 50%; border: 3px solid #fff; }
+.head .ava img + img { margin-left: -20px; }
+.head b { display: block; font: 600 30px Inter; }
+.head span { font: 400 26px Inter; color: var(--muted); }
+.thread { padding: 30px 30px; display: flex; flex-direction: column; gap: 20px; }
+.msg { display: flex; align-items: flex-end; gap: 14px; max-width: 84%; }
+.msg img { width: 56px; height: 56px; border-radius: 50%; flex: none; }
+.b { padding: 20px 26px; border-radius: 30px; font: 400 33px/1.3 Inter; }
+.them .b { background: var(--them); border-bottom-left-radius: 8px; }
+.me { align-self: flex-end; flex-direction: row-reverse; }
+.me .b { background: var(--me); color: #fff; border-bottom-right-radius: 8px; }
+.b mark { background: var(--hi); color: inherit; border-radius: 6px; padding: 0 4px; }
+.me .b mark { background: rgba(255,255,255,.22); color: #fff; font-weight: 600; }
+.card { background: var(--them); border-radius: 26px; padding: 20px 22px; display: flex; align-items: center; gap: 10px; font: 600 27px Inter; }
+.card span { background: #fff; border: 2px solid #d1d5db; border-radius: 14px; padding: 8px 14px; }
+.card .ic { color: var(--muted); font-size: 26px; }
+.read { align-self: flex-end; font: 500 26px Inter; color: var(--muted); margin-top: -4px; }
+.typing { display: flex; gap: 8px; padding: 22px 26px; background: var(--them); border-radius: 30px; width: fit-content; }
+.typing i { width: 14px; height: 14px; border-radius: 50%; background: #9ca3af; }
+.foot { position: absolute; left: 70px; right: 70px; bottom: 36px; display: flex; align-items: baseline; justify-content: space-between; }
+.sig { font: 400 54px Chewy, cursive; color: var(--me); }
+.foot span:last-child { font: 500 26px Inter; color: var(--muted); }
+</style>
+
+<div class="art">
+  <h1>The MCP question <span>everyone gets wrong</span></h1>
+  <div class="phone">
+    <div class="head"><span class="ava"><img src="https://api.dicebear.com/9.x/micah/svg?seed=Wei&backgroundColor=c7d2fe" alt=""><img src="https://api.dicebear.com/9.x/micah/svg?seed=Daniel&backgroundColor=fde68a" alt=""></span>
+      <div><b>dev team</b><span>Maya, Sam</span></div></div>
+    <div class="thread">
+      <div class="msg them"><img src="https://api.dicebear.com/9.x/micah/svg?seed=Wei&backgroundColor=c7d2fe" alt=""><div class="b">Should we build an MCP server or an API?</div></div>
+      <div class="msg me"><div class="b">Wrong question. MCP sits <mark>on top of</mark> your API.</div></div>
+      <div class="msg me"><div class="card"><span>AI app</span><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/arrow-right.svg)"></i><span>MCP</span><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/arrow-right.svg)"></i><span>your API</span></div></div>
+      <div class="msg them"><img src="https://api.dicebear.com/9.x/micah/svg?seed=Wei&backgroundColor=c7d2fe" alt=""><div class="b">So the API does the work, and MCP lets <mark>any AI app</mark> use it?</div></div>
+      <div class="msg me"><div class="b">Exactly. Build it once.</div></div>
+      <span class="read">Read 10:42</span>
+      <div class="msg them"><img src="https://api.dicebear.com/9.x/micah/svg?seed=Wei&backgroundColor=c7d2fe" alt=""><div class="typing"><i></i><i></i><i></i></div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="sig">nifail</span><span>Avatars: Micah by Micah Lanier</span></div>
+</div>

@@ -1,0 +1,51 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>MCP vs API · F · Whiteboard</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=Kalam:wght@400;700&family=Patrick+Hand&display=swap">
+<style>
+/* F · Whiteboard: marker on a whiteboard, wobbly boxes and arrows, a sticky note. 1080x1350 (4:5). Smallest text 28px. */
+:root { --board: #fbfbf7; --ink: #1d1d1f; --blue: #1f4fd1; --red: #e03131; --green: #2f9e44; --note: #ffe66d; }
+body { margin: 0; background: var(--board); color: var(--ink); font-family: "Patrick Hand", cursive; }
+.art { position: relative; width: 1080px; height: 1350px; overflow: hidden; background:
+  radial-gradient(circle at 20% 10%, rgba(0,0,0,.025), transparent 40%), linear-gradient(#fbfbf7, #f4f4ee); }
+.frame { position: absolute; inset: 22px; border: 10px solid #c9ccd1; border-radius: 14px; box-shadow: inset 0 0 40px rgba(0,0,0,.05); }
+.ic { display: inline-block; width: 1em; height: 1em; flex: none; background: currentColor; -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+h1 { position: absolute; left: 80px; top: 70px; margin: 0; font: 700 96px/1.02 Kalam; letter-spacing: -.01em; transform: rotate(-1.2deg); }
+h1 u { text-decoration: none; background: linear-gradient(transparent 70%, rgba(224,49,49,.35) 70%); }
+.box { position: absolute; display: grid; place-items: center; text-align: center; font: 700 40px/1.1 Kalam; border: 5px solid currentColor;
+  border-radius: 255px 18px 225px 18px / 18px 225px 18px 255px; padding: 18px 22px; box-sizing: border-box; }
+.box small { display: block; font: 400 30px "Patrick Hand"; color: #555; }
+.arrow { position: absolute; }
+.arrow path { fill: none; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.math { position: absolute; left: 90px; top: 830px; font: 700 54px/1.25 Kalam; }
+.math s { color: var(--red); text-decoration-thickness: 6px; }
+.math b { color: var(--green); }
+.note { position: absolute; right: 86px; top: 800px; width: 360px; height: 330px; background: var(--note); padding: 30px 30px; box-sizing: border-box; transform: rotate(3deg);
+  box-shadow: 0 14px 24px -12px rgba(0,0,0,.35); font: 400 36px/1.22 "Patrick Hand"; }
+.note::before { content: ""; position: absolute; left: 120px; top: -18px; width: 120px; height: 36px; background: rgba(255,255,255,.6); transform: rotate(-4deg); }
+.note b { font: 700 38px Kalam; color: var(--red); display: block; margin-bottom: 8px; }
+.person { position: absolute; left: 70px; bottom: 70px; display: flex; align-items: flex-end; gap: 18px; }
+.person img { width: 170px; height: 170px; }
+.person p { margin: 0 0 30px; font: 400 34px/1.2 "Patrick Hand"; max-width: 520px; }
+.sig { position: absolute; right: 80px; bottom: 66px; font: 400 56px Chewy, cursive; color: var(--blue); transform: rotate(-3deg); }
+</style>
+
+<div class="art">
+  <div class="frame"></div>
+  <h1>MCP is <u>not</u> a new API.</h1>
+
+  <div class="box" style="left: 80px; top: 330px; width: 260px; height: 190px; color: var(--ink)">AI app<small>Claude, IDE, agent</small></div>
+  <div class="box" style="left: 410px; top: 320px; width: 260px; height: 210px; color: var(--blue)">MCP<small>one plug</small></div>
+  <div class="box" style="left: 740px; top: 330px; width: 260px; height: 190px; color: var(--green)">your API<small>does the work</small></div>
+  <svg class="arrow" style="left: 330px; top: 395px" width="90" height="60"><path d="M6 32 C 30 24, 50 36, 78 28 M 62 14 L 80 28 L 60 44" stroke="#1d1d1f"/></svg>
+  <svg class="arrow" style="left: 660px; top: 395px" width="90" height="60"><path d="M6 30 C 28 38, 52 22, 78 30 M 62 15 L 80 30 L 61 45" stroke="#1d1d1f"/></svg>
+
+  <div class="box" style="left: 120px; top: 600px; width: 840px; height: 150px; color: var(--red); font-size: 36px">Connect 3 AI apps to 4 tools. How many integrations?</div>
+
+  <div class="math">APIs only: <s>3 × 4 = 12</s><br>With MCP: <b>3 + 4 = 7</b></div>
+
+  <div class="note"><b>remember!</b>Most MCP servers just call an API you already have.</div>
+
+  <div class="person"><img src="https://api.dicebear.com/9.x/open-peeps/svg?seed=Kai" alt=""><p>Build the API once. Plug it into any AI app.</p></div>
+  <span class="sig">nifail</span>
+</div>

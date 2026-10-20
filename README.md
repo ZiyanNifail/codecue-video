@@ -202,6 +202,14 @@ Static 4:5 posts (1080×1350) for a personal-brand series about AI. Each one is 
   - **B · Editorial:** cream paper, Instrument Serif headline, ink-blue labels.
   - **C · Comic:** three outlined panels with speech bubbles. One beat per panel, so the panels can become video scenes.
   - **D · Poster:** one big number story on a blue field with lime accents.
+  - **E · Code editor:** a dark IDE window with syntax colours. Comments explain and code proves.
+  - **F · Whiteboard:** marker fonts (Kalam, Patrick Hand), wobbly boxes and arrows, a sticky note.
+  - **G · Swiss grid:** a 12-column grid, huge Inter Tight type, red, black and off-white only.
+  - **H · Glass keynote:** a dark gradient stage, glowing blobs, frosted-glass cards, a gradient headline.
+  - **I · Notebook:** grid paper, taped sticky notes, Caveat and Gochi Hand handwriting, highlighter.
+  - **J · Chat thread:** a generic messaging-app conversation, with no real app branding.
+  - E–J were made for MCP vs API only, to compare all ten styles. Each matches its avatar style to the look, still one style per post.
+- **Research:** `docs/linkedin-research.md` has what drives LinkedIn engagement (formats, hooks, captions, cadence) and how it shapes these posts.
 - **Rules:** the smallest text is 26 px on the 1080 canvas, so it stays readable in a phone feed. Use one avatar style per post: Notionists, Open Peeps or Lorelei (all CC0), or Micah (CC BY 4.0, which needs the credit "Avatars: Micah by Micah Lanier"). No emoji.
 - **Render PNGs:** `npm run stills -- posts/01-mcp-vs-api/*.html` writes a PNG next to each HTML file. It waits for fonts and avatars before taking each shot.
 

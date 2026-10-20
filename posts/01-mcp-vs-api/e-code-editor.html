@@ -1,0 +1,57 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>MCP vs API · E · Code editor</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@600;700&display=swap">
+<style>
+/* E · Code editor: the post is a dark IDE window. Comments explain, code proves. 1080x1350 (4:5). Smallest text 26px. */
+:root { --bg: #0d1117; --pane: #161b22; --edge: #30363d; --text: #e6edf3; --muted: #7d8590; --gutter: #484f58;
+  --kw: #ff7b72; --fn: #d2a8ff; --str: #a5d6ff; --num: #79c0ff; --com: #8b949e; --ok: #3fb950; --sand: #f5c26b; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: "JetBrains Mono", monospace; }
+.art { position: relative; width: 1080px; height: 1350px; overflow: hidden; padding: 52px 48px; box-sizing: border-box; }
+h1 { margin: 10px 0 40px 6px; font: 700 76px/1.06 Sora; letter-spacing: -.035em; }
+h1 span { color: var(--sand); }
+.win { background: var(--pane); border: 1px solid var(--edge); border-radius: 18px; overflow: hidden; }
+.tabs { display: flex; align-items: center; gap: 4px; padding: 14px 18px 0; background: #0d1117; border-bottom: 1px solid var(--edge); }
+.dots { display: flex; gap: 10px; margin: 0 18px 14px 4px; }
+.dots i { width: 16px; height: 16px; border-radius: 50%; background: #3d444d; }
+.tab { font-size: 26px; padding: 10px 20px 14px; color: var(--muted); border-radius: 10px 10px 0 0; }
+.tab.on { background: var(--pane); color: var(--text); border: 1px solid var(--edge); border-bottom: 0; margin-bottom: -1px; }
+.code { padding: 26px 0 30px; font-size: 31px; line-height: 1.72; }
+.ln { display: grid; grid-template-columns: 72px 1fr; white-space: pre; }
+.ln b { color: var(--gutter); font-weight: 400; text-align: right; padding-right: 22px; }
+.ln.hl { background: rgba(245, 194, 107, .09); box-shadow: inset 4px 0 0 var(--sand); }
+.kw { color: var(--kw); } .fn { color: var(--fn); } .str { color: var(--str); } .num { color: var(--num); } .com { color: var(--com); font-style: italic; }
+.term { margin-top: 22px; background: #010409; border: 1px solid var(--edge); border-radius: 14px; padding: 22px 26px; font-size: 29px; line-height: 1.6; }
+.term .p { color: var(--ok); }
+.term .dim { color: var(--muted); }
+.foot { position: absolute; left: 54px; right: 54px; bottom: 40px; display: flex; align-items: center; justify-content: space-between; }
+.who { display: flex; align-items: center; gap: 16px; }
+.who img { width: 72px; height: 72px; border-radius: 16px; }
+.sig { font: 400 52px Chewy, cursive; color: var(--sand); }
+.foot .blame { font-size: 26px; color: var(--muted); }
+</style>
+
+<div class="art">
+  <h1>MCP doesn't replace your API. <span>It wraps it.</span></h1>
+  <div class="win">
+    <div class="tabs"><span class="dots"><i></i><i></i><i></i></span><span class="tab on">github-mcp.ts</span><span class="tab">api.ts</span></div>
+    <div class="code">
+      <div class="ln"><b>1</b><span class="com">// Without MCP: every AI app × every tool</span></div>
+      <div class="ln"><b>2</b><span><span class="kw">const</span> custom = <span class="num">3</span> * <span class="num">4</span>;   <span class="com">// 12 integrations</span></span></div>
+      <div class="ln"><b>3</b><span class="com">// With MCP: each side speaks it once</span></div>
+      <div class="ln hl"><b>4</b><span><span class="kw">const</span> withMcp = <span class="num">3</span> + <span class="num">4</span>;  <span class="com">// 7</span></span></div>
+      <div class="ln"><b>5</b><span> </span></div>
+      <div class="ln"><b>6</b><span>server.<span class="fn">registerTool</span>(<span class="str">"create_issue"</span>,</span></div>
+      <div class="ln"><b>7</b><span>  { inputSchema },</span></div>
+      <div class="ln"><b>8</b><span>  <span class="kw">async</span> (args) => {</span></div>
+      <div class="ln hl"><b>9</b><span>    <span class="kw">return</span> github.<span class="fn">createIssue</span>(args);</span></div>
+      <div class="ln"><b>10</b><span>    <span class="com">// ↑ the API you already have</span></span></div>
+      <div class="ln"><b>11</b><span>  });</span></div>
+    </div>
+  </div>
+  <div class="term"><span class="p">$</span> any AI app → <span class="str">tools/list</span><br><span class="dim">→ create_issue, search_code, open_pr …</span></div>
+  <div class="foot">
+    <div class="who"><img src="https://api.dicebear.com/9.x/notionists/svg?seed=Kai&backgroundColor=f5c26b" alt=""><span class="sig">nifail</span></div>
+    <span class="blame">AI, explained / 01</span>
+  </div>
+</div>
