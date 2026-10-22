@@ -1,0 +1,104 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Bloodborne on PC · N · Split-screen</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=IBM+Plex+Mono:wght@500&family=Sora:wght@400;600;800&display=swap">
+<style>
+/* N · Split-screen: a hard 50/50 split, old world (muted, locked) vs new world (bright, unlocked), mirrored layout.
+   Carousel slides, 1080x1350 each. Smallest text 26px. */
+:root { --l: #1b1d22; --l2: #2a2d34; --lt: #9aa0ab; --r: #f4f1ea; --rt: #16161a; --acc: #ff4d2e; --acc2: #2f6bff; }
+body { margin: 0; background: #000; font-family: Sora, sans-serif; }
+.slide { position: relative; width: 1080px; height: 1350px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; }
+.ic { display: inline-block; width: 1em; height: 1em; flex: none; background: currentColor; -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+.side { position: relative; padding: 64px 48px; box-sizing: border-box; }
+.L { background: var(--l); color: var(--lt); }
+.R { background: var(--r); color: var(--rt); }
+.yr { font: 800 120px/1 Sora; letter-spacing: -.05em; }
+.R .yr { color: var(--acc); }
+.plat { margin-top: 10px; font: 500 30px "IBM Plex Mono"; letter-spacing: .1em; }
+.stat { margin-top: 44px; display: grid; gap: 22px; }
+.stat div { font: 600 36px/1.2 Sora; display: flex; align-items: center; gap: 16px; }
+.stat .ic { font-size: 40px; flex: none; }
+.R .stat .ic { color: var(--acc); }
+.seam { position: absolute; left: 50%; top: 0; bottom: 0; width: 6px; margin-left: -3px; background: var(--acc); }
+.mid { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 880px; text-align: center; background: var(--acc); color: #fff; padding: 34px 40px; box-sizing: border-box; font: 800 60px/1.06 Sora; letter-spacing: -.03em; box-shadow: 0 30px 60px -20px rgba(0,0,0,.5); }
+.mid small { display: block; margin-top: 14px; font: 600 30px/1.3 Sora; letter-spacing: 0; opacity: .92; }
+.ava { position: absolute; bottom: 150px; width: 170px; height: 170px; border-radius: 50%; }
+.L .ava { left: 48px; filter: grayscale(1) brightness(.75); }
+.R .ava { right: 48px; }
+.foot { position: absolute; left: 0; right: 0; bottom: 0; height: 110px; display: grid; grid-template-columns: 1fr 1fr; }
+.foot div { display: flex; align-items: center; padding: 0 48px; font: 500 26px "IBM Plex Mono"; }
+.foot .L { justify-content: flex-start; } .foot .R { justify-content: flex-end; }
+.sig { font: 400 50px Chewy, cursive; color: var(--acc); }
+h2 { margin: 0; font: 800 58px/1.04 Sora; letter-spacing: -.03em; }
+.L h2 { color: #d8dbe1; }
+.steps { margin-top: 36px; display: grid; gap: 22px; }
+.steps div { padding: 22px 24px; border-radius: 18px; font: 600 32px/1.25 Sora; }
+.L .steps div { background: var(--l2); }
+.R .steps div { background: #fff; border: 2px solid #e4e0d6; }
+.R .steps div.hot { border-color: var(--acc); }
+.steps small { display: block; margin-top: 6px; font: 500 26px "IBM Plex Mono"; opacity: .75; }
+.cap { margin-top: 28px; font: 500 28px/1.35 "IBM Plex Mono"; }
+.big { font: 800 150px/.9 Sora; letter-spacing: -.06em; margin-top: 30px; }
+.L .big { color: #d8dbe1; } .R .big { color: var(--acc2); }
+.lbl { margin-top: 14px; font: 600 36px/1.2 Sora; }
+</style>
+
+<!-- Slide 1: cover -->
+<div class="slide">
+  <div class="side L">
+    <div class="yr">2015</div><div class="plat">PS4 ONLY</div>
+    <div class="stat"><div><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/lock.svg)"></i>locked to one console</div><div><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/gauge.svg)"></i>30 fps</div></div>
+    <img class="ava" src="https://api.dicebear.com/9.x/lorelei/svg?seed=hunter&backgroundColor=cfd3da" alt="">
+  </div>
+  <div class="side R">
+    <div class="yr" style="text-align: right">2026</div><div class="plat" style="text-align: right">ON PC</div>
+    <div class="stat" style="justify-items: end"><div>runs natively<i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/lock-open.svg)"></i></div><div>60+ fps<i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/gauge.svg)"></i></div></div>
+    <img class="ava" src="https://api.dicebear.com/9.x/lorelei/svg?seed=hunter&backgroundColor=ffd9cc" alt="">
+  </div>
+  <div class="seam"></div>
+  <div class="mid">Bloodborne was stuck on PS4 for 11 years. Then a fan vibe-coded it onto PC.<small>But the AI didn't do the hard part. Swipe.</small></div>
+  <div class="foot"><div class="L" style="color: var(--lt)">1/7</div><div class="R"><span class="sig">nifail</span></div></div>
+</div>
+
+<!-- Slide 4: emulation vs native -->
+<div class="slide">
+  <div class="side L">
+    <div class="plat">EMULATOR · shadPS4</div>
+    <h2 style="margin-top: 18px">Pretend to be a PS4.</h2>
+    <div class="steps">
+      <div>Game code<small>loaded by the emulator</small></div>
+      <div>Fake PS4 OS<small>rebuilt in full</small></div>
+      <div>Fake PS4 GPU<small>shaders translated</small></div>
+    </div>
+    <div class="cap">Built by humans since 2022.</div>
+  </div>
+  <div class="side R">
+    <div class="plat" style="color: var(--acc)">NATIVE PORT · bbport</div>
+    <h2 style="margin-top: 18px">Skip the fake CPU.</h2>
+    <div class="steps">
+      <div class="hot">Game code<small>runs straight on your CPU</small></div>
+      <div>Small runtime<small>~5k lines replace the PS4 OS</small></div>
+      <div>shadPS4's renderer<small>reused, then modified</small></div>
+    </div>
+    <div class="cap">Built with Claude Code, 2026.</div>
+  </div>
+  <div class="seam"></div>
+  <div class="foot"><div class="L" style="color: var(--lt)">4/7</div><div class="R"><span class="sig">nifail</span></div></div>
+</div>
+
+<!-- Slide 7: takeaway -->
+<div class="slide">
+  <div class="side L">
+    <div class="plat">HUMANS</div>
+    <div class="big">4 yrs</div>
+    <div class="lbl">mapping how a PS4 works, in the open</div>
+  </div>
+  <div class="side R">
+    <div class="plat" style="text-align: right; color: var(--acc)">AI</div>
+    <div class="big" style="text-align: right">last mile</div>
+    <div class="lbl" style="text-align: right">turning that map into a native port</div>
+  </div>
+  <div class="seam"></div>
+  <div class="mid" style="top: 74%">"Without shadPS4 there would be no bbport."<small>the bbport developer · sources: VGTimes, Wccftech</small></div>
+  <div class="foot"><div class="L" style="color: var(--lt)">7/7</div><div class="R"><span class="sig">nifail</span></div></div>
+</div>

@@ -1,0 +1,103 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Bloodborne on PC · K · Blueprint</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* K · Blueprint: white technical linework on blueprint blue, engineering title block, numbered callouts.
+   Carousel slides, 1080x1350 each. Smallest text 26px. */
+:root { --blue: #0f3d73; --deep: #0a2c55; --line: #e8f1ff; --dim: #9fbbe0; --cyan: #7fe0ff; --amber: #ffcf5c; --grid: rgba(232,241,255,.09); }
+body { margin: 0; background: #06213f; font-family: "IBM Plex Mono", monospace; color: var(--line); }
+.slide { position: relative; width: 1080px; height: 1350px; overflow: hidden; box-sizing: border-box; padding: 60px;
+  background: linear-gradient(var(--grid) 2px, transparent 2px) 0 0 / 54px 54px, linear-gradient(90deg, var(--grid) 2px, transparent 2px) 0 0 / 54px 54px, var(--blue); }
+.slide::before { content: ""; position: absolute; inset: 30px; border: 3px solid var(--line); pointer-events: none; }
+.ic { display: inline-block; width: 1em; height: 1em; flex: none; background: currentColor; -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+.tag { font: 500 26px "IBM Plex Mono"; color: var(--dim); letter-spacing: .12em; }
+h1 { margin: 22px 0 0; font: 700 112px/.98 "Space Grotesk"; letter-spacing: -.035em; }
+h1 em { font-style: normal; color: var(--amber); }
+h2 { margin: 18px 0 0; font: 700 72px/1.02 "Space Grotesk"; letter-spacing: -.03em; }
+p.lead { margin: 26px 0 0; font: 400 34px/1.4 "IBM Plex Mono"; color: var(--dim); max-width: 880px; }
+.tb { position: absolute; right: 30px; bottom: 30px; display: grid; grid-template-columns: auto auto; border-top: 3px solid var(--line); border-left: 3px solid var(--line); font: 500 26px "IBM Plex Mono"; }
+.tb div { padding: 10px 18px; border-right: 3px solid var(--line); border-bottom: 3px solid var(--line); }
+.tb .k { color: var(--dim); }
+.tb .sig { font: 400 40px/1 Chewy, cursive; color: var(--amber); }
+.swipe { position: absolute; left: 60px; bottom: 74px; display: flex; align-items: center; gap: 14px; font: 600 30px "IBM Plex Mono"; color: var(--cyan); }
+.av { width: 150px; height: 150px; filter: invert(1) brightness(1.8); opacity: .95; }
+svg.draw { position: absolute; left: 0; top: 0; overflow: visible; }
+svg.draw * { fill: none; stroke: var(--line); stroke-width: 3; }
+svg.draw .dash { stroke-dasharray: 10 10; stroke: var(--dim); }
+svg.draw .hot { stroke: var(--amber); stroke-width: 4; }
+svg.draw text { fill: var(--line); stroke: none; font: 500 26px "IBM Plex Mono"; }
+svg.draw text.big { font: 700 34px "Space Grotesk"; }
+svg.draw text.dim { fill: var(--dim); }
+svg.draw text.amber { fill: var(--amber); }
+.callouts { position: absolute; left: 60px; right: 60px; top: 972px; display: grid; gap: 8px; }
+.callouts div { display: grid; grid-template-columns: 52px 1fr; gap: 16px; font: 400 28px/1.3 "IBM Plex Mono"; }
+.callouts b { width: 46px; height: 46px; border: 3px solid var(--amber); border-radius: 50%; display: grid; place-items: center; color: var(--amber); font-weight: 600; }
+.quote { margin-top: 40px; display: flex; gap: 24px; align-items: center; border: 3px dashed var(--dim); padding: 26px 30px; }
+.quote p { margin: 0; font: 500 36px/1.3 "Space Grotesk"; }
+.quote small { display: block; margin-top: 8px; font: 400 26px "IBM Plex Mono"; color: var(--dim); }
+.lessons { margin-top: 36px; display: grid; gap: 18px; }
+.lessons div { display: grid; grid-template-columns: 70px 1fr; font: 400 34px/1.32 "IBM Plex Mono"; }
+.lessons b { font: 700 40px "Space Grotesk"; color: var(--amber); }
+</style>
+
+<!-- Slide 1: cover -->
+<div class="slide">
+  <div class="tag">FIELD NOTES · AI, EXPLAINED</div>
+  <h1>Bloodborne was stuck on PS4 for <em>11 years.</em></h1>
+  <p class="lead">Then a fan vibe-coded it onto PC. Here's how it actually works, and the part AI didn't do.</p>
+  <svg class="draw" width="1080" height="1350">
+    <rect x="110" y="770" width="300" height="200" rx="14"/><text x="150" y="860" class="big">PS4</text><text x="150" y="905" class="dim">x86-64 · 2015</text>
+    <rect x="670" y="770" width="300" height="200" rx="14" class="hot"/><text x="710" y="860" class="big">PC</text><text x="710" y="905" class="dim">x86-64 · 2026</text>
+    <path d="M420 870 H 660" class="hot"/><path d="M640 855 L 662 870 L 640 885" class="hot"/>
+    <text x="455" y="845" class="amber">same CPU</text><text x="455" y="905" class="amber">language</text>
+    <path d="M110 1010 V 1030 M 970 1010 V 1030 M 110 1020 H 970" class="dash"/><text x="420" y="1065" class="dim">11 years · 2015 to 2026</text>
+  </svg>
+  <div class="swipe"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/arrow-right.svg)"></i>swipe for the schematic</div>
+  <div class="tb"><div class="k">DRAWN BY</div><div class="sig">nifail</div><div class="k">SHEET</div><div>1 / 7</div></div>
+</div>
+
+<!-- Slide 4: how bbport works -->
+<div class="slide">
+  <div class="tag">SHEET 4 · HOW THE PORT WORKS</div>
+  <h2>No emulator for the CPU. <span style="color: var(--amber)">Just a swap.</span></h2>
+  <svg class="draw" width="1080" height="1350">
+    <rect x="90" y="330" width="900" height="130" rx="12" class="hot"/><text x="120" y="390" class="big">Bloodborne game code</text><text x="120" y="432" class="dim">original PS4 executable, v1.09</text>
+    <circle cx="950" cy="350" r="22" class="hot"/><text x="941" y="359" class="amber">1</text>
+    <path d="M300 470 V 540 M 285 520 L 300 542 L 315 520"/><path d="M780 470 V 540 M 765 520 L 780 542 L 795 520"/>
+    <rect x="90" y="550" width="420" height="170" rx="12"/><text x="115" y="610" class="big">PC CPU</text><text x="115" y="655" class="dim">runs it directly,</text><text x="115" y="690" class="dim">no translation</text>
+    <circle cx="480" cy="570" r="22" class="hot"/><text x="471" y="579" class="amber">2</text>
+    <rect x="570" y="550" width="420" height="170" rx="12"/><text x="595" y="610" class="big">bbport runtime</text><text x="595" y="655" class="dim">~5k lines replace</text><text x="595" y="690" class="dim">PS4 system libraries</text>
+    <circle cx="960" cy="570" r="22" class="hot"/><text x="951" y="579" class="amber">3</text>
+    <path d="M780 730 V 800 M 765 780 L 780 802 L 795 780"/>
+    <rect x="330" y="810" width="660" height="150" rx="12" class="dash"/><text x="355" y="868" class="big">shadPS4 renderer → Vulkan</text><text x="355" y="910" class="dim">built by humans since 2022</text>
+    <circle cx="960" cy="830" r="22" class="hot"/><text x="951" y="839" class="amber">4</text>
+  </svg>
+  <div class="callouts">
+    <div><b>1</b>PS4 and PC chips speak the same language (x86-64).</div>
+    <div><b>2</b>So the game's own code runs as-is on your CPU.</div>
+    <div><b>3</b>A small runtime fakes the PS4 operating system.</div>
+    <div><b>4</b>Graphics lean on the emulator's work.</div>
+  </div>
+  <div class="tb"><div class="k">DRAWN BY</div><div class="sig">nifail</div><div class="k">SHEET</div><div>4 / 7</div></div>
+</div>
+
+<!-- Slide 7: lesson -->
+<div class="slide">
+  <div class="tag">SHEET 7 · THE TAKEAWAY</div>
+  <h2>AI didn't crack Bloodborne. <span style="color: var(--amber)">It finished the last mile.</span></h2>
+  <div class="quote"><img class="av" src="https://api.dicebear.com/9.x/notionists/svg?seed=Kai" alt="">
+    <p>"Without shadPS4 there would be no bbport."<small>the bbport developer</small></p></div>
+  <div class="lessons">
+    <div><b>01</b>Humans spent 4 years mapping the PS4.</div>
+    <div><b>02</b>One dev + Claude Code built the native port on top.</div>
+    <div><b>03</b>AI is fastest where people already did the hard thinking.</div>
+  </div>
+  <svg class="draw" width="1080" height="1350">
+    <text x="90" y="860" class="dim">human work (shadPS4)</text><text x="760" y="860" class="amber">AI-assisted port</text>
+    <rect x="90" y="880" width="760" height="56" rx="8"/><rect x="860" y="880" width="130" height="56" rx="8" class="hot"/>
+    <text x="90" y="985" class="dim">Oct 2022</text><text x="560" y="985" class="dim">Jan 2026 · 60 fps</text><text x="845" y="985" class="amber">Oct 2026</text>
+  </svg>
+  <div class="swipe" style="color: var(--dim); bottom: 170px">Sources: shadPS4 · bbport · VGTimes · Wccftech</div>
+  <div class="tb"><div class="k">DRAWN BY</div><div class="sig">nifail</div><div class="k">SHEET</div><div>7 / 7</div></div>
+</div>

@@ -1,0 +1,84 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Bloodborne on PC · L · Versus</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Chewy&family=Oswald:wght@400;600&display=swap">
+<style>
+/* L · Versus fight card: boxing-poster layout, red corner vs blue corner, tale of the tape.
+   Carousel slides, 1080x1350 each. Smallest text 28px. */
+:root { --ink: #0c0c0e; --paper: #f3ece0; --red: #e23b2e; --blue: #2f6bff; --gold: #f2c14e; --dim: #8b8579; }
+body { margin: 0; background: #000; font-family: Oswald, sans-serif; color: var(--paper); }
+.slide { position: relative; width: 1080px; height: 1350px; overflow: hidden; box-sizing: border-box; padding: 64px; background: var(--ink); }
+.ic { display: inline-block; width: 1em; height: 1em; flex: none; background: currentColor; -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+.halves { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; }
+.halves div:first-child { background: linear-gradient(160deg, #3a0f0c, var(--ink) 70%); }
+.halves div:last-child { background: linear-gradient(200deg, #0d1d45, var(--ink) 70%); }
+.slide > *:not(.halves):not(.bottom) { position: relative; }
+.kicker { text-align: center; font: 600 30px Oswald; letter-spacing: .3em; color: var(--gold); }
+.title { margin-top: 24px; text-align: center; font: 400 150px/.9 Anton; text-transform: uppercase; letter-spacing: .01em; }
+.title .r { color: var(--red); } .title .b { color: var(--blue); }
+.vs { margin: 20px auto 0; width: 140px; height: 140px; border-radius: 50%; background: var(--gold); color: var(--ink); display: grid; place-items: center; font: 400 64px Anton; }
+.corners { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; text-align: center; }
+.corner .who { width: 260px; height: 260px; margin: 0 auto; border-radius: 50%; display: grid; place-items: center; border: 6px solid currentColor; background: rgba(255,255,255,.04); }
+.corner .who img { width: 230px; height: 230px; border-radius: 50%; }
+.corner .who .ic { font-size: 140px; }
+.corner h3 { margin: 20px 0 0; font: 400 64px/1 Anton; text-transform: uppercase; }
+.corner p { margin: 12px 0 0; font: 400 36px/1.3 Oswald; color: #d8d0c2; }
+.red { color: var(--red); } .blue { color: var(--blue); }
+.bottom { position: absolute; left: 64px; right: 64px; bottom: 56px; display: flex; justify-content: space-between; align-items: baseline; }
+.sig { font: 400 50px Chewy, cursive; color: var(--gold); }
+.bottom span:last-child { font: 600 30px Oswald; letter-spacing: .1em; color: var(--dim); }
+.tape { margin-top: 56px; border-top: 4px solid var(--gold); }
+.row { display: grid; grid-template-columns: 1fr 240px 1fr; align-items: center; border-bottom: 2px solid #2a2824; padding: 34px 0; }
+.row div:first-child { text-align: right; padding-right: 26px; }
+.row div:last-child { padding-left: 26px; }
+.row div { font: 400 40px/1.15 Oswald; }
+.row .lab { text-align: center; font: 600 28px Oswald; letter-spacing: .14em; color: var(--gold); text-transform: uppercase; }
+.verdict { margin-top: 60px; text-align: center; font: 400 128px/.95 Anton; text-transform: uppercase; }
+.verdict span { color: var(--gold); }
+.belt { margin: 60px auto 0; max-width: 860px; text-align: center; border: 4px solid var(--gold); padding: 30px; font: 400 38px/1.3 Oswald; }
+.belt small { display: block; margin-top: 10px; font: 400 28px Oswald; color: var(--dim); }
+.facts { margin-top: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.facts div { border: 3px solid currentColor; padding: 30px 30px; font: 400 36px/1.3 Oswald; }
+.facts b { display: block; font: 400 64px Anton; }
+</style>
+
+<!-- Slide 1: cover -->
+<div class="slide">
+  <div class="halves"><div></div><div></div></div>
+  <div class="kicker">TONIGHT · THE BLOODBORNE PC FIGHT</div>
+  <div class="title"><span class="r">Humans</span><br><span class="b">vs AI</span></div>
+  <div class="vs">VS</div>
+  <div class="corners">
+    <div class="corner red"><div class="who"><img src="https://api.dicebear.com/9.x/open-peeps/svg?seed=Arif&backgroundColor=f3ece0" alt=""></div><h3>Red corner</h3><p>Open-source emulator devs. 4 years in the gym.</p></div>
+    <div class="corner blue"><div class="who"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/bot.svg)"></i></div><h3>Blue corner</h3><p>One fan + Claude Code. Fresh to the ring.</p></div>
+  </div>
+  <div class="bottom"><span class="sig">nifail</span><span>SWIPE FOR THE TAPE · 1/7</span></div>
+</div>
+
+<!-- Slide 3: tale of the tape -->
+<div class="slide">
+  <div class="halves"><div></div><div></div></div>
+  <div class="kicker">TALE OF THE TAPE</div>
+  <div class="title" style="font-size: 96px"><span class="r">shadPS4</span> <span style="color: var(--gold)">·</span> <span class="b">bbport</span></div>
+  <div class="tape">
+    <div class="row"><div class="red">Oct 2022</div><div class="lab">debut</div><div class="blue">Oct 2026</div></div>
+    <div class="row"><div class="red">Open-source team</div><div class="lab">built by</div><div class="blue">One dev + Claude Code</div></div>
+    <div class="row"><div class="red">Emulate the whole PS4</div><div class="lab">style</div><div class="blue">Run game code natively</div></div>
+    <div class="row"><div class="red">Years of reverse-engineering</div><div class="lab">training</div><div class="blue">142 of 150 commits co-signed by Claude</div></div>
+    <div class="row"><div class="red">4K / 60 fps (2026)</div><div class="lab">record</div><div class="blue">60+ fps, FSR upscaling</div></div>
+  </div>
+  <div class="bottom"><span class="sig">nifail</span><span>3/7</span></div>
+</div>
+
+<!-- Slide 7: verdict -->
+<div class="slide">
+  <div class="halves"><div></div><div></div></div>
+  <div class="kicker">THE JUDGES' VERDICT</div>
+  <div class="verdict">It was never<br>a fight. <span>It was a tag team.</span></div>
+  <div class="belt">"Without shadPS4 there would be no bbport."<small>the bbport developer</small></div>
+  <div class="facts">
+    <div class="red"><b>4 years</b>humans mapped the PS4</div>
+    <div class="blue"><b>last mile</b>AI turned that map into a port</div>
+  </div>
+  <div class="bottom"><span class="sig">nifail</span><span>SOURCES: SHADPS4 · VGTIMES · WCCFTECH · 7/7</span></div>
+</div>

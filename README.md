@@ -212,6 +212,7 @@ Static 4:5 posts (1080×1350) for a personal-brand series about AI. Each one is 
 - **Research:** `docs/linkedin-research.md` has what drives LinkedIn engagement (formats, hooks, captions, cadence) and how it shapes these posts.
 - **Rules:** the smallest text is 26 px on the 1080 canvas, so it stays readable in a phone feed. Use one avatar style per post: Notionists, Open Peeps or Lorelei (all CC0), or Micah (CC BY 4.0, which needs the credit "Avatars: Micah by Micah Lanier"). No emoji.
 - **Render PNGs:** `npm run stills -- posts/01-mcp-vs-api/*.html` writes a PNG next to each HTML file. It waits for fonts and avatars before taking each shot.
+- **Carousels:** a carousel page stacks 1080×1350 `.slide` elements. `node scripts/carousel.mjs <page.html>` writes `slide-N.png` for each slide and a PDF for LinkedIn document posts into a folder named after the page. Signature-style candidates K–N (blueprint, versus, git graph, split-screen) are in `posts/05-bloodborne-pc/`.
 
 ## Storytelling videos (ElevenLabs)
 
