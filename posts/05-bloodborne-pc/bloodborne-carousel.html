@@ -1,0 +1,140 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Bloodborne on PC · carousel</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=Inter:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+/* Git graph house style (M): the story as branches and commits on light terminal paper.
+   5-slide carousel, 1080x1350 each. Smallest text 26px. Commits are labelled by date; no hashes are invented. */
+:root { --paper: #f7f6f2; --ink: #16161a; --muted: #6e6c66; --rule: #e2e0d8; --sony: #9a978f; --main: #2f6bff; --port: #f0662a; --ai: #8b5cf6; --ok: #1f9d55; --bad: #d92d20; }
+body { margin: 0; background: #ddd; font-family: Inter, sans-serif; color: var(--ink); }
+.slide { position: relative; width: 1080px; height: 1350px; overflow: hidden; box-sizing: border-box; padding: 64px; background: var(--paper); }
+.bar { display: flex; align-items: center; gap: 14px; font: 500 28px "JetBrains Mono"; color: var(--muted); }
+.bar .p { color: var(--ok); }
+h1 { margin: 34px 0 0; font: 800 80px/1.04 Inter; letter-spacing: -.04em; }
+h1 .then { display: block; margin-top: 22px; color: var(--port); }
+h2 { margin: 28px 0 0; font: 800 64px/1.04 Inter; letter-spacing: -.035em; }
+svg.g { position: absolute; left: 0; top: 0; overflow: visible; }
+svg.g path { fill: none; stroke-width: 10; stroke-linecap: round; }
+svg.g .sony { stroke: var(--sony); } svg.g .main { stroke: var(--main); } svg.g .port { stroke: var(--port); } svg.g .ai { stroke: var(--ai); }
+svg.g .dash { stroke-dasharray: 2 22; }
+svg.g circle { stroke-width: 8; fill: var(--paper); }
+svg.g .cs { stroke: var(--sony); } svg.g .cm { stroke: var(--main); } svg.g .cp { stroke: var(--port); } svg.g .ca { stroke: var(--ai); }
+svg.g .x { stroke: var(--bad); stroke-width: 8; }
+svg.g text { font: 500 28px Inter; fill: var(--ink); }
+svg.g text.lab { font: 700 27px "JetBrains Mono"; }
+svg.g text.d { fill: var(--muted); font: 500 26px "JetBrains Mono"; }
+.legend { position: absolute; left: 64px; right: 64px; bottom: 150px; display: flex; flex-wrap: wrap; gap: 14px 36px; font: 500 27px "JetBrains Mono"; }
+.legend span::before { content: ""; display: inline-block; width: 40px; height: 10px; border-radius: 5px; margin-right: 12px; vertical-align: middle; background: var(--c); }
+.foot { position: absolute; left: 64px; right: 64px; bottom: 50px; display: flex; justify-content: space-between; align-items: baseline; border-top: 2px solid var(--rule); padding-top: 18px; }
+.sig { font: 400 50px Chewy, cursive; color: var(--port); }
+.foot span:last-child { font: 500 26px "JetBrains Mono"; color: var(--muted); }
+.grid150 { margin-top: 40px; display: grid; grid-template-columns: repeat(25, 1fr); gap: 9px; }
+.grid150 i { aspect-ratio: 1; border-radius: 6px; background: var(--ai); }
+.grid150 i.h { background: #d9d6cc; }
+.cap150 { margin-top: 14px; display: flex; justify-content: space-between; font: 500 26px "JetBrains Mono"; color: var(--muted); }
+.cap150 b { color: var(--ai); }
+.how { margin-top: 34px; display: grid; gap: 14px; }
+.how div { display: grid; grid-template-columns: 56px 1fr; align-items: start; font: 600 34px/1.3 Inter; }
+.how i { font: 700 28px "JetBrains Mono"; font-style: normal; color: var(--port); padding-top: 2px; }
+.note { margin-top: 40px; padding: 24px 28px; background: #fff; border: 2px solid var(--rule); border-radius: 18px; font: 500 29px/1.4 Inter; color: #3b3a36; }
+.note code { font: 500 27px "JetBrains Mono"; background: #f0eee8; padding: 2px 8px; border-radius: 6px; color: var(--ink); }
+.conflict { margin-top: 30px; border: 3px solid var(--bad); border-radius: 18px; overflow: hidden; background: #fff; }
+.conflict .h { background: #fde8e6; color: var(--bad); font: 700 27px "JetBrains Mono"; padding: 14px 24px; }
+.conflict p { margin: 0; padding: 24px 24px 8px; font: 600 38px/1.3 Inter; }
+.conflict small { display: block; padding: 0 24px 20px; font: 500 26px "JetBrains Mono"; color: var(--muted); }
+.big { margin-top: 30px; font: 800 74px/1.04 Inter; letter-spacing: -.04em; }
+.big span { color: var(--main); } .big em { font-style: normal; color: var(--ai); }
+.quote { margin-top: 34px; display: flex; gap: 24px; align-items: center; padding: 26px 28px; background: #fff; border: 2px solid var(--rule); border-radius: 18px; }
+.quote img { width: 110px; height: 110px; border-radius: 22px; flex: none; }
+.quote p { margin: 0; font: 700 36px/1.25 Inter; }
+.quote small { display: block; margin-top: 6px; font: 500 26px "JetBrains Mono"; color: var(--muted); }
+.src { margin-top: 30px; font: 500 26px/1.6 "JetBrains Mono"; color: var(--muted); }
+.src b { color: var(--ink); font-weight: 700; }
+</style>
+
+<!-- 1 · Hook -->
+<div class="slide">
+  <div class="bar"><span class="p">$</span> git log --graph bloodborne</div>
+  <h1>Sony was greedy and selfish, so Bloodborne was stuck on PS4 for a decade.<span class="then">Then Claude helped one fan bring it to PC.</span></h1>
+  <svg class="g" width="1080" height="1350">
+    <path class="sony" d="M120 900 H 380"/><path class="sony dash" d="M380 900 H 960"/>
+    <path class="main" d="M560 900 C 600 900, 600 1000, 640 1000 H 820"/>
+    <path class="port" d="M820 1000 C 860 1000, 860 1100, 900 1100 H 960"/>
+    <circle class="cs" cx="120" cy="900" r="20"/><circle class="cm" cx="640" cy="1000" r="18"/><circle class="cm" cx="820" cy="1000" r="18"/><circle class="cp" cx="960" cy="1100" r="20"/>
+    <text x="90" y="960" class="d">2015 · PS4</text><text x="600" y="1060" class="d">2022 · shadPS4</text><text x="760" y="1160" class="d" style="fill: var(--port)">2026 · PC</text>
+  </svg>
+  <div class="foot"><span class="sig">nifail</span><span>swipe → · 1/5</span></div>
+</div>
+
+<!-- 2 · Sony's branch vs the fans' branch -->
+<div class="slide">
+  <div class="bar"><span class="p">$</span> git log --graph sony shadps4</div>
+  <h2>Sony's branch went quiet. <span style="color: var(--main)">The fans' didn't.</span></h2>
+  <svg class="g" width="1080" height="1350">
+    <path class="sony" d="M120 360 V 400"/><path class="sony dash" d="M120 400 V 1110"/>
+    <path class="main" d="M120 500 C 120 520, 210 520, 210 540 V 1000"/>
+    <circle class="cs" cx="120" cy="380" r="18"/><text x="270" y="372" class="lab">Mar 2015</text><text x="270" y="408">Bloodborne ships: PS4 only, 30 fps</text>
+    <circle class="cm" cx="210" cy="540" r="18"/><text x="270" y="532" class="lab" style="fill: var(--main)">Oct 2022</text><text x="270" y="568">George Moralis starts shadPS4, open source</text>
+    <circle class="cm" cx="210" cy="660" r="18"/><text x="270" y="652" class="lab" style="fill: var(--main)">Jul–Aug 2024</text><text x="270" y="688">Bloodborne boots, then goes in-game</text>
+    <path class="x" d="M104 764 L 136 796 M 136 764 L 104 796"/><text x="270" y="772" class="lab" style="fill: var(--bad)">Jan 2025</text><text x="270" y="808">fan 60 fps patch pulled after a Sony-side complaint</text>
+    <circle class="cm" cx="210" cy="900" r="18"/><text x="270" y="892" class="lab" style="fill: var(--main)">Jan 2025</text><text x="270" y="928">"very playable" with mods</text>
+    <circle class="cm" cx="210" cy="1010" r="18"/><text x="270" y="1002" class="lab" style="fill: var(--main)">Jan 2026</text><text x="270" y="1038">60 fps, tested by Digital Foundry</text>
+    <text x="270" y="1112" class="d">sony: still no official PC port</text>
+  </svg>
+  <div class="legend"><span style="--c: var(--sony)">sony (2015, then silence)</span><span style="--c: var(--main)">shadPS4, built by humans</span></div>
+  <div class="foot"><span class="sig">nifail</span><span>2/5</span></div>
+</div>
+
+<!-- 3 · The AI branch -->
+<div class="slide">
+  <div class="bar"><span class="p">$</span> git shortlog bbport --co-authors</div>
+  <h2>Oct 2026: one fan, Claude Code, and <span style="color: var(--ai)">142 of 150</span> commits.</h2>
+  <div class="grid150"></div>
+  <div class="cap150"><span><b>■</b> co-signed by Claude: 142</span><span>other: 8 · as of Oct 10</span></div>
+  <div class="how">
+    <div><i>01</i>PS4 and PC chips speak the same language, so the game's code runs directly on your CPU.</div>
+    <div><i>02</i>A ~5k-line runtime stands in for the PS4's operating system.</div>
+    <div><i>03</i>Graphics reuse shadPS4's renderer, heavily modified.</div>
+  </div>
+  <div class="note">The developer: <code>"I use Claude Code; it generates the code and runs checks."</code></div>
+  <div class="foot"><span class="sig">nifail</span><span>3/5</span></div>
+  <script>document.querySelector('.grid150').innerHTML = Array.from({ length: 150 }, (_, i) => `<i class="${i < 142 ? '' : 'h'}"></i>`).join('');</script>
+</div>
+
+<!-- 4 · The wave and the backlash -->
+<div class="slide">
+  <div class="bar"><span class="p">$</span> git log --all --since=2026-10-01</div>
+  <h2>Then the floodgates opened.</h2>
+  <svg class="g" width="1080" height="1350">
+    <path class="port" d="M120 300 V 770"/>
+    <circle class="cp" cx="120" cy="320" r="18"/><text x="180" y="312" class="lab" style="fill: var(--port)">Oct 4</text><text x="180" y="348">bbport: Bloodborne runs natively on PC</text>
+    <circle class="cp" cx="120" cy="440" r="18"/><text x="180" y="432" class="lab" style="fill: var(--port)">Oct 7</text><text x="180" y="468">bbhost: online co-op and PvP via a fan server</text>
+    <circle class="cp" cx="120" cy="560" r="18"/><text x="180" y="552" class="lab" style="fill: var(--port)">Oct 2026</text><text x="180" y="588">Paleblood: rebuilding the source, 157,757 pieces</text>
+    <circle class="cp" cx="120" cy="680" r="18"/><text x="180" y="672" class="lab" style="fill: var(--port)">Oct 2026</text><text x="180" y="708">P.T. and Modern Warfare 2 rebuilt with AI help</text>
+  </svg>
+  <div style="height: 600px"></div>
+  <div class="conflict"><div class="h">CONFLICT (content): fans vs AI-built ports</div>
+    <p>"I will just use the emulator made by humans."</p><small>a fan, quoted by GamesRadar · others called it "AI slop"</small></div>
+  <div class="foot"><span class="sig">nifail</span><span>4/5</span></div>
+</div>
+
+<!-- 5 · Takeaway -->
+<div class="slide">
+  <div class="bar"><span class="p">$</span> git merge shadps4 --into bbport</div>
+  <div class="big">Claude wrote the commits.<br><span>Humans drew the map.</span></div>
+  <div class="quote"><img src="https://api.dicebear.com/9.x/micah/svg?seed=Kai&backgroundColor=ede9fe" alt="">
+    <p>"Without shadPS4 there would be no bbport."<small>the bbport developer</small></p></div>
+  <div class="how" style="margin-top: 40px">
+    <div><i>→</i>AI is fastest where people already did the hard thinking.</div>
+    <div><i>→</i>Every one of these ports needs your own copy of the game.</div>
+  </div>
+  <svg class="g" width="1080" height="1350">
+    <path class="main" d="M120 900 H 560 C 620 900, 620 960, 680 960"/>
+    <path class="port" d="M120 1020 H 560 C 620 1020, 620 960, 680 960 H 960"/>
+    <circle class="cm" cx="120" cy="900" r="16"/><circle class="cp" cx="120" cy="1020" r="16"/><circle class="cp" cx="960" cy="960" r="22"/>
+    <text x="160" y="884" class="d" style="fill: var(--main)">humans: shadPS4</text><text x="160" y="1068" class="d" style="fill: var(--port)">fan + Claude Code: bbport</text>
+    <text x="700" y="930" class="lab">Bloodborne on PC</text>
+  </svg>
+  <div class="src" style="position: absolute; left: 64px; right: 64px; top: 1100px; margin: 0"><b>Sources</b> VGTimes · Wccftech · Destructoid · GamesRadar · shadPS4 (Wikipedia) · Hyperlific · bbhost README</div>
+  <div class="foot"><span class="sig">nifail</span><span>Avatars: Micah by Micah Lanier · 5/5</span></div>
+</div>
