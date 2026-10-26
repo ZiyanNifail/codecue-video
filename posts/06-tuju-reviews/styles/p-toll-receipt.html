@@ -1,0 +1,55 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>TuJu · P · Toll receipt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=Courier+Prime:wght@400;700&display=swap">
+<style>
+/* P · Toll receipt: one long thermal-paper receipt on a dark car mat. Every line item comes from public reviews.
+   Monospace only, dotted leaders, torn zigzag bottom. 1080x1350. */
+:root { --mat: #262523; --paper: #f6f4ee; --ink: #232220; --fade: #77736b; }
+body { margin: 0; background: #999; }
+.slide { position: relative; width: 1080px; height: 1350px; overflow: hidden; background: var(--mat);
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.025) 0 2px, transparent 2px 9px); }
+.receipt { position: absolute; left: 170px; top: -20px; width: 740px; height: 1330px; background: var(--paper); color: var(--ink); transform: rotate(-1.2deg);
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,.7); font: 400 30px/1.45 "Courier Prime", monospace; padding: 80px 56px 0; box-sizing: border-box;
+  -webkit-mask: linear-gradient(#000, #000) top / 100% calc(100% - 22px) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / 44px 22px repeat-x;
+          mask: linear-gradient(#000, #000) top / 100% calc(100% - 22px) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / 44px 22px repeat-x; }
+.c { text-align: center; }
+.hd { font: 700 44px/1.1 "Courier Prime"; letter-spacing: .12em; }
+.meta { color: var(--fade); }
+.dash { border-top: 3px dashed var(--ink); margin: 22px 0; opacity: .8; }
+h1 { margin: 6px 0; font: 700 54px/1.08 "Courier Prime"; text-transform: uppercase; letter-spacing: -.01em; }
+.li { display: flex; gap: 10px; }
+.li span:first-child { white-space: nowrap; }
+.li i { flex: 1; border-bottom: 3px dotted var(--ink); margin-bottom: 11px; opacity: .55; }
+.li b { white-space: nowrap; }
+.total { display: flex; justify-content: space-between; align-items: baseline; font: 700 72px/1 "Courier Prime"; margin: 6px 0; }
+.total span:first-child { font-size: 44px; letter-spacing: .1em; }
+.note { color: var(--fade); font-size: 26px; }
+.bars { height: 90px; margin: 26px 40px 10px; background: repeating-linear-gradient(90deg, var(--ink) 0 3px, transparent 3px 7px, var(--ink) 7px 12px, transparent 12px 14px, var(--ink) 14px 15px, transparent 15px 21px); }
+.sig { font: 400 60px Chewy, cursive; color: var(--ink); }
+</style>
+
+<div class="slide">
+  <div class="receipt">
+    <div class="c hd">TUJU</div>
+    <div class="c meta">RESIT PENGGUNA / USER RECEIPT</div>
+    <div class="c meta">26/10/2026 10:19 · LORONG 1</div>
+    <div class="dash"></div>
+    <h1>TuJu, the Waze replacement, rated by Malaysians</h1>
+    <div class="dash"></div>
+    <div class="li"><span>SEARCH "KLCC"</span><i></i><b>NO RESULT</b></div>
+    <div class="li"><span>HIGHWAY CCTV</span><i></i><b>NO FEED</b></div>
+    <div class="li"><span>APPLE CARPLAY</span><i></i><b>N/A</b></div>
+    <div class="li"><span>ANDROID AUTO</span><i></i><b>N/A</b></div>
+    <div class="dash"></div>
+    <div class="li"><span>GOOGLE PLAY (4.9K)</span><i></i><b>1.2★</b></div>
+    <div class="li"><span>APP STORE (1.9K)</span><i></i><b>1.3★</b></div>
+    <div class="dash" style="border-top-style: double; border-top-width: 6px"></div>
+    <div class="total"><span>TOTAL</span><span>1.2/5</span></div>
+    <div class="dash"></div>
+    <div class="c note">ITEMS TAKEN FROM PUBLIC REVIEWS<br>21–26 OCT 2026</div>
+    <div class="bars"></div>
+    <div class="c">TERIMA KASIH · SWIPE →</div>
+    <div class="c sig">nifail</div>
+  </div>
+</div>

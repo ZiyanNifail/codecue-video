@@ -1,0 +1,53 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>TuJu · R · Report card</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=Nanum+Pen+Script&family=Special+Elite&display=swap">
+<style>
+/* R · Red-pen report card: ruled exam paper, typewritten report, marked in red ballpoint.
+   Marks are the real store ratings; remarks quote real reviews. 1080x1350. */
+:root { --paper: #fbfaf5; --rule: #b9cfe6; --margin: #e48b8b; --type: #22201c; --pen: #d2231d; }
+body { margin: 0; background: #999; }
+.slide { position: relative; width: 1080px; height: 1350px; overflow: hidden; background: var(--paper); color: var(--type); font: 400 32px/52px "Special Elite", monospace;
+  background-image: linear-gradient(90deg, transparent 138px, var(--margin) 138px 141px, transparent 141px), repeating-linear-gradient(transparent 0 51px, var(--rule) 51px 52px); background-position: 0 0, 0 18px; }
+.hole { position: absolute; left: 48px; width: 44px; height: 44px; border-radius: 50%; background: #d9d6cc; box-shadow: inset 0 3px 6px rgba(0,0,0,.25); }
+.wrap { position: absolute; left: 172px; right: 70px; top: 70px; }
+.hd { letter-spacing: .14em; }
+.meta { display: flex; gap: 40px; }
+h1 { margin: 26px 0 0; font: 400 66px/1.1 "Special Elite"; }
+table { width: 100%; margin-top: 40px; border-collapse: collapse; }
+th, td { text-align: left; padding: 12px 0; border-bottom: 2px solid var(--type); font: 400 32px/1.25 "Special Elite"; vertical-align: top; }
+th { font-size: 26px; letter-spacing: .12em; }
+td.g, th.g { width: 110px; text-align: center; }
+.pen { font-family: "Nanum Pen Script", cursive; color: var(--pen); }
+.F { font-size: 74px; line-height: .7; }
+.grade { position: absolute; right: 56px; top: 30px; width: 200px; height: 170px; border: 6px solid var(--pen); border-radius: 50%; transform: rotate(-9deg); display: grid; place-items: center; text-align: center; }
+.grade b { display: block; font: 400 140px/.75 "Nanum Pen Script"; color: var(--pen); }
+.grade span { font: 400 46px/1 "Nanum Pen Script"; color: var(--pen); }
+.remark { position: absolute; font: 400 64px/1 "Nanum Pen Script"; color: var(--pen); }
+.foot { position: absolute; left: 172px; right: 70px; bottom: 56px; display: flex; justify-content: space-between; align-items: baseline; }
+.sig { font: 400 58px Chewy, cursive; color: #1f3f8f; }
+</style>
+
+<div class="slide">
+  <div class="hole" style="top: 260px"></div><div class="hole" style="top: 660px"></div><div class="hole" style="top: 1060px"></div>
+  <div class="grade"><b>F</b><span>24%</span></div>
+
+  <div class="wrap">
+    <div class="hd">REPORT CARD · OCT 2026</div>
+    <div class="meta"><span>Name: TuJu</span></div><div class="meta"><span>Graded by: Malaysians</span></div>
+    <h1>TuJu, the Waze replacement, rated by Malaysians.</h1>
+    <table>
+      <tr><th>SUBJECT</th><th>MARK</th><th class="g">GRADE</th></tr>
+      <tr><td>Google Play</td><td>1.2 / 5</td><td class="g pen F">F</td></tr>
+      <tr><td>App Store</td><td>1.3 / 5</td><td class="g pen F">F</td></tr>
+      <tr><td>Search</td><td>"No results found"</td><td class="g pen F">F</td></tr>
+      <tr><td>Highway CCTV</td><td>"Always no feed"</td><td class="g pen F">F</td></tr>
+    </table>
+  </div>
+
+  <div class="remark" style="left: 190px; top: 960px; transform: rotate(-3deg)">"tak ada UAT ke sebelum publish.."</div>
+  <div class="remark" style="left: 230px; top: 1040px; font-size: 40px; transform: rotate(-3deg)">quoted from an App Store review, 21 Oct</div>
+  <div class="remark" style="right: 90px; top: 1110px; transform: rotate(4deg)">See me.</div>
+
+  <div class="foot"><span>Parent's signature: <span class="sig">nifail</span></span><span>swipe →</span></div>
+</div>

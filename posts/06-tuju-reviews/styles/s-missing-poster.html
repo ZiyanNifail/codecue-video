@@ -1,0 +1,39 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>TuJu · S · Missing poster</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Chewy&family=Roboto+Mono:wght@500;700&display=swap">
+<style>
+/* S · "HILANG" missing poster: a photocopied A4 taped to a concrete wall. TuJu has lost its hala tuju (direction).
+   Black on white, grain overlay, tear-off tabs carrying the signature. 1080x1350. */
+:root { --wall: #8e8b85; --ink: #111; }
+body { margin: 0; background: #999; }
+.slide { position: relative; width: 1080px; height: 1350px; overflow: hidden; background: var(--wall); }
+.slide::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .35; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.ic { display: inline-block; width: 1em; height: 1em; flex: none; background: currentColor; -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+.poster { position: absolute; left: 90px; top: 60px; width: 900px; height: 1200px; background: #fbfbf9; transform: rotate(1.2deg); box-shadow: 0 20px 40px -18px rgba(0,0,0,.6); color: var(--ink); text-align: center; padding: 50px 60px 0; box-sizing: border-box; }
+.tape { position: absolute; width: 170px; height: 46px; background: rgba(240,235,215,.75); }
+.big { font: 400 250px/.86 Anton; letter-spacing: .01em; }
+.sub { font: 700 34px Roboto Mono; letter-spacing: .3em; margin-top: 4px; }
+.photo { margin: 30px auto 0; width: 420px; height: 300px; border: 6px solid var(--ink); display: grid; place-items: center; font-size: 210px; background: #e9e9e6; }
+h1 { margin: 28px 0 0; font: 400 66px/1.02 Anton; text-transform: uppercase; }
+.facts { margin-top: 20px; font: 500 30px/1.45 Roboto Mono; }
+.facts b { font-weight: 700; }
+.tabs { position: absolute; left: 0; right: 0; bottom: 0; height: 200px; display: flex; border-top: 4px dashed var(--ink); }
+.tabs div { flex: 1; border-left: 3px dashed var(--ink); writing-mode: vertical-rl; transform: rotate(180deg); display: grid; place-items: center; font: 400 40px Chewy, cursive; }
+.tabs div:first-child { border-left: 0; }
+.tabs div.gone { visibility: hidden; }
+</style>
+
+<div class="slide">
+  <div class="poster">
+    <div class="tape" style="left: -40px; top: -14px; transform: rotate(-30deg)"></div>
+    <div class="tape" style="right: -40px; top: -14px; transform: rotate(28deg)"></div>
+    <div class="big">HILANG</div>
+    <div class="sub">MISSING: HALA TUJU</div>
+    <div class="photo"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/map-pin-off.svg)"></i></div>
+    <h1>TuJu, the Waze replacement, rated by Malaysians</h1>
+    <div class="facts"><b>Google Play:</b> 1.2★ · 4.9K reviews<br><b>App Store:</b> 1.3★ · 1.9K ratings<br>Last seen: when you searched "KLCC".</div>
+    <div class="tabs"><div>nifail · swipe</div><div>nifail · swipe</div><div class="gone"></div><div>nifail · swipe</div><div class="gone"></div><div>nifail · swipe</div><div>nifail · swipe</div></div>
+  </div>
+</div>
