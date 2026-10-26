@@ -1,0 +1,96 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>TuJu reviews · carousel</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Caveat:wght@700&family=Chewy&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Evidence-board carousel: one real store review per slide, then the Google twist.
+   Screenshots taken 23 and 26 Oct 2026 from Google Play, the App Store, Sinar Daily and Engadget; reviewer names blurred.
+   Carousel slides, 1080x1350 each. */
+:root { --paper: #efe9dd; --ink: #17161a; --muted: #6d675c; --red: #e0352b; --hl: rgba(255, 214, 10, .55); }
+body { margin: 0; background: #ccc; }
+.slide { position: relative; width: 1080px; height: 1350px; overflow: hidden; background: var(--paper); font-family: Archivo, sans-serif; color: var(--ink);
+  background-image: radial-gradient(rgba(0,0,0,.05) 1px, transparent 1px); background-size: 22px 22px; }
+.ic { display: inline-block; width: 1em; height: 1em; flex: none; background: currentColor; -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+
+.kicker { position: absolute; left: 64px; top: 60px; display: flex; align-items: center; gap: 12px; font: 700 28px "JetBrains Mono"; letter-spacing: .06em; color: var(--red); }
+.kicker .ic { font-size: 32px; }
+h1 { position: absolute; left: 64px; right: 50px; top: 110px; margin: 0; font: 900 104px/.96 Archivo; letter-spacing: -.04em; }
+h2 { position: absolute; left: 64px; right: 64px; top: 112px; margin: 0; font: 900 84px/1 Archivo; letter-spacing: -.035em; }
+h1 em, h2 em { font-style: normal; color: var(--red); }
+.sub { position: absolute; left: 64px; right: 64px; font: 700 48px/1.1 Caveat, cursive; color: var(--red); }
+
+/* pinned screenshot */
+.pin { position: absolute; background: #fff; padding: 14px; border-radius: 12px; box-shadow: 0 22px 44px -16px rgba(0,0,0,.38), 0 2px 6px rgba(0,0,0,.08); }
+.pin img { display: block; width: 100%; border-radius: 8px; }
+.pin::before { content: ""; position: absolute; top: -18px; left: 50%; width: 150px; height: 36px; margin-left: -75px; background: rgba(255,255,255,.6); border: 1px solid rgba(0,0,0,.06); transform: rotate(-3deg); }
+.tag { position: absolute; top: -20px; right: 20px; background: var(--ink); color: #fff; font: 700 24px "JetBrains Mono"; padding: 7px 14px; border-radius: 6px; letter-spacing: .04em; }
+.mark { position: absolute; background: var(--hl); mix-blend-mode: multiply; border-radius: 4px; }
+
+.stats { position: absolute; left: 64px; right: 64px; top: 560px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.stat { border-top: 5px solid var(--ink); padding-top: 18px; }
+.stat b { display: flex; align-items: center; gap: 8px; font: 900 150px/1 Archivo; letter-spacing: -.045em; color: var(--red); }
+.stat b .ic { font-size: 92px; }
+.stat span { display: block; margin-top: 8px; font: 700 32px/1.25 "JetBrains Mono"; }
+
+.box { position: absolute; left: 64px; right: 64px; background: var(--ink); color: #fff; border-radius: 16px; padding: 28px 32px; font: 500 32px/1.35 Archivo; }
+.box b { color: #ffd60a; font-weight: 800; }
+
+.foot { position: absolute; left: 64px; right: 64px; bottom: 36px; display: flex; justify-content: space-between; align-items: baseline; }
+.sig { font: 400 52px Chewy, cursive; color: var(--red); }
+.foot span:last-child { font: 700 26px "JetBrains Mono"; color: var(--muted); text-align: right; }
+</style>
+
+<!-- 1 · Cover -->
+<div class="slide">
+  <div class="kicker"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/map-pin-off.svg)"></i>WAZE OUT. TUJU IN.</div>
+  <h1>TuJu, the Waze replacement, <em>rated by Malaysians.</em></h1>
+  <div class="stats">
+    <div class="stat"><b>1.2<i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/star.svg)"></i></b><span>Google Play<br>4.92K reviews</span></div>
+    <div class="stat"><b>1.3<i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/star.svg)"></i></b><span>App Store<br>1.9K ratings</span></div>
+  </div>
+  <div class="pin" style="left: 70px; top: 880px; width: 560px; transform: rotate(-3deg)"><img src="assets/as-6.png" alt=""></div>
+  <div class="pin" style="left: 520px; top: 920px; width: 520px; transform: rotate(2.5deg)"><img src="assets/gp-1.png" alt=""></div>
+  <div class="foot"><span class="sig">nifail</span><span>Ratings as of 26 Oct · swipe →</span></div>
+</div>
+
+<!-- 2 · Review: search -->
+<div class="slide">
+  <div class="kicker"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/search-x.svg)"></i>REVIEW 1 · APP STORE · 1 STAR</div>
+  <h2>A navigation app where <em>search doesn't work.</em></h2>
+  <div class="pin" style="left: 56px; top: 420px; width: 940px; transform: rotate(-1.2deg)"><img src="assets/as-6.png" alt="App Store review: Promising concept, but launched way too early"><span class="tag">APP STORE</span></div>
+  <div class="sub" style="top: 900px">"…the search function—arguably the most fundamental feature—doesn't work at all."</div>
+  <div class="box" style="top: 1040px">Search came up in <b>195 of the latest 500</b> App Store reviews, more than any other complaint. Type a place, get "No results found."</div>
+  <div class="foot"><span class="sig">nifail</span><span>2/5</span></div>
+</div>
+
+<!-- 3 · Review: CCTV -->
+<div class="slide">
+  <div class="kicker"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/cctv.svg)"></i>REVIEW 2 · GOOGLE PLAY · 1 STAR</div>
+  <h2>Even its best feature, <em>the highway CCTV.</em></h2>
+  <div class="pin" style="left: 64px; top: 420px; width: 920px; transform: rotate(1.2deg)"><img src="assets/gp-1.png" alt="Google Play review about the highway CCTV feed"><span class="tag">GOOGLE PLAY</span></div>
+  <div class="mark" style="left: 92px; top: 900px; width: 520px; height: 40px; transform: rotate(1.2deg)"></div>
+  <div class="box" style="top: 1030px">Live CCTV is what TuJu does that Waze doesn't. This review is from <b>September</b>, before the rush, and 640 people marked it helpful.</div>
+  <div class="foot"><span class="sig">nifail</span><span>3/5</span></div>
+</div>
+
+<!-- 4 · Review: written by AI -->
+<div class="slide">
+  <div class="kicker"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/bot.svg)"></i>REVIEW 3 · APP STORE · 1 STAR</div>
+  <h2>So fed up, they <em>let AI write the review.</em></h2>
+  <div class="pin" style="left: 56px; top: 420px; width: 940px; transform: rotate(-1deg)"><img src="assets/as-2.png" alt="App Store review titled Stone Age app"><span class="tag">APP STORE</span></div>
+  <div class="mark" style="left: 96px; top: 572px; width: 880px; height: 84px; transform: rotate(-1deg)"></div>
+  <div class="sub" style="top: 870px">Read the first line again.</div>
+  <div class="box" style="top: 1000px">"Here's a sharp, critical statement that expresses your frustration…" That reads like a chatbot's reply, <b>pasted straight in.</b> Even the review was outsourced.</div>
+  <div class="foot"><span class="sig">nifail</span><span>4/5</span></div>
+</div>
+
+<!-- 5 · The Google twist -->
+<div class="slide">
+  <div class="kicker"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/map.svg)"></i>THE PART NOBODY'S TALKING ABOUT</div>
+  <h2>TuJu runs on Google's maps. <em>Google owns Waze.</em></h2>
+  <div class="pin" style="left: 64px; top: 410px; width: 640px; transform: rotate(-1.5deg)"><img src="assets/sinar.png" alt="Sinar Daily: TuJu still uses Google's mapping and points-of-interest data"><span class="tag">SINAR DAILY · 21 OCT 2026</span></div>
+  <div class="pin" style="left: 560px; top: 610px; width: 450px; transform: rotate(2deg)"><img src="assets/engadget.png" alt="Engadget, June 11 2013: Google has purchased Waze"><span class="tag">ENGADGET · 2013</span></div>
+  <div class="box" style="top: 940px">To be fair: the ban was about Waze's company being under <b>Israeli law</b>, not about Google. But it shows how hard it is to leave Big Tech by switching apps. <b>The map underneath is still Google's.</b></div>
+  <div class="sub" style="top: 1170px">Would you switch if it worked?</div>
+  <div class="foot"><span class="sig">nifail</span><span>Screenshots 23–26 Oct · names blurred · 5/5</span></div>
+</div>
