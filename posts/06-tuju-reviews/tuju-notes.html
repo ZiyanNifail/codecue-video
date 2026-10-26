@@ -1,0 +1,118 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>TuJu reviews · Notes carousel</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Q · Phone-native: every slide is an iPhone Notes screen. Status bar, Notes nav, the note typed in a system-like
+   sans, real store and news screenshots pasted in as attachments, Notes block quotes and highlighter, Notes toolbar.
+   No device frame. Screenshots taken 23 and 26 Oct 2026, reviewer names blurred. Carousel slides, 1080x1350 each. */
+:root { --acc: #e3a008; --ink: #111; --grey: #8a8a8e; --hl: #e9dcff; }
+body { margin: 0; background: #999; }
+.slide { position: relative; width: 1080px; height: 1350px; overflow: hidden; background: #fff; font-family: Inter, -apple-system, sans-serif; color: var(--ink); }
+.ic { display: inline-block; width: 1em; height: 1em; flex: none; background: currentColor; -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+.status { position: absolute; left: 70px; right: 60px; top: 26px; display: flex; align-items: center; font: 700 36px Inter; }
+.status .r { margin-left: auto; display: flex; gap: 14px; font-size: 36px; }
+.nav { position: absolute; left: 40px; right: 50px; top: 98px; display: flex; align-items: center; color: var(--acc); font: 500 40px Inter; }
+.nav .ic { font-size: 50px; }
+.nav .r { margin-left: auto; display: flex; gap: 34px; font-size: 46px; }
+.date { position: absolute; left: 0; right: 0; top: 176px; text-align: center; font: 500 28px Inter; color: var(--grey); }
+.note { position: absolute; left: 64px; right: 64px; top: 222px; }
+.note h1 { margin: 0; font: 800 70px/1.04 Inter; letter-spacing: -.025em; }
+.note p { margin: 20px 0 0; font: 400 38px/1.38 Inter; }
+.note p b { font-weight: 700; }
+.note mark { background: var(--hl); color: inherit; border-radius: 6px; padding: 0 4px; }
+.note blockquote { margin: 22px 0 0; padding: 4px 0 4px 26px; border-left: 6px solid #d4d4d8; font: 400 38px/1.38 Inter; color: #3a3a3c; }
+.att { margin-top: 22px; border-radius: 18px; overflow: hidden; border: 2px solid #e6e6ea; background: #fff; }
+.att img { display: block; width: 100%; }
+.cap { margin-top: 8px; font: 500 26px Inter; color: var(--grey); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.end { margin-top: 22px; display: flex; align-items: baseline; gap: 18px; font: 500 28px Inter; color: var(--grey); }
+.sig { font: 400 54px Chewy, cursive; color: var(--ink); }
+.tool { position: absolute; left: 0; right: 0; bottom: 0; height: 130px; border-top: 1px solid #e6e6ea; display: flex; justify-content: space-around; align-items: center; color: var(--acc); font-size: 50px; padding-bottom: 24px; box-sizing: border-box; background: #fafafa; }
+.home { position: absolute; left: 50%; bottom: 14px; width: 300px; height: 10px; margin-left: -150px; border-radius: 5px; background: #111; }
+</style>
+
+<!-- 1 · Cover -->
+<div class="slide">
+  <div class="note">
+    <h1>TuJu, the Waze replacement, rated by Malaysians</h1>
+    <p><b>Google Play:</b> 1.2★ (4.9K reviews)<br><b>App Store:</b> 1.3★ (1.9K ratings)</p>
+    <p>In their words:</p>
+    <div class="att"><img src="assets/as-5.png" alt="App Store review: Disappointing Navigation Experience"></div>
+    <p>Swipe for the rest → <span class="sig">nifail</span></p>
+  </div>
+</div>
+
+<!-- 2 · Search -->
+<div class="slide">
+  <div class="note">
+    <h1>1. Search doesn't work</h1>
+    <p>A navigation app where you can't search for a place.</p>
+    <div class="att"><img src="assets/as-6.png" alt="App Store review: the search function doesn't work at all"></div>
+    <div class="cap">App Store · 1 star · names blurred</div>
+    <p>Search came up in <mark>195 of the latest 500</mark> App Store reviews, more than any other complaint.</p>
+    <blockquote>"Cari klcc pun tak kuar result."</blockquote>
+    <div class="end"><span class="sig">nifail</span>2 of 5</div>
+  </div>
+</div>
+
+<!-- 3 · CCTV -->
+<div class="slide">
+  <div class="note">
+    <h1>2. Even the CCTV</h1>
+    <p>Live highway CCTV is the one thing TuJu has that Waze doesn't.</p>
+    <div class="att"><img src="assets/gp-1.png" alt="Google Play review: highway CCTV always no feed"></div>
+    <div class="cap">Google Play · 1 star · names blurred</div>
+    <p>Posted in September, before the rush. <mark>640 people</mark> marked it helpful.</p>
+    <div class="end"><span class="sig">nifail</span>3 of 5</div>
+  </div>
+</div>
+
+<!-- 4 · Written by AI -->
+<div class="slide">
+  <div class="note">
+    <h1>3. Even the review was outsourced</h1>
+    <p>Read the first line.</p>
+    <div class="att"><img src="assets/as-2.png" alt="App Store review titled Stone Age app"></div>
+    <div class="cap">App Store · 1 star · names blurred</div>
+    <blockquote>"Here's a sharp, critical statement that expresses your frustration…"</blockquote>
+    <p>That reads like a chatbot's reply, <mark>pasted straight in.</mark></p>
+    <div class="end"><span class="sig">nifail</span>4 of 5</div>
+  </div>
+</div>
+
+<!-- 5 · The Google twist -->
+<div class="slide">
+  <div class="note">
+    <h1>The plot twist</h1>
+    <p><mark><b>TuJu runs on Google's maps. Google owns Waze.</b></mark></p>
+    <div class="att"><img src="assets/sinar.png" alt="Sinar Daily: TuJu still uses Google's mapping and points-of-interest data"></div><div class="cap">Sinar Daily, 21 Oct 2026</div>
+    <div class="att" style="width: 640px"><img src="assets/engadget-head.png" alt="Engadget: Google has purchased Waze"></div><div class="cap">Engadget, 11 Jun 2013</div>
+    <p>To be fair, the ban was about Waze's company being under Israeli law, not about Google. But the map underneath is still Google's.</p>
+    <p><b>Would you switch if it worked?</b></p>
+    <div class="end"><span class="sig">nifail</span>5 of 5 · screenshots 23–26 Oct</div>
+  </div>
+</div>
+
+<template id="chrome">
+  <div class="status">10:19<span class="r">
+    <i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/signal.svg)"></i>
+    <i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/wifi.svg)"></i>
+    <i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/battery-full.svg)"></i></span></div>
+  <div class="nav"><i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/chevron-left.svg)"></i>Notes<span class="r">
+    <i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/share.svg)"></i>
+    <i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/circle-ellipsis.svg)"></i></span></div>
+  <div class="date">26 October 2026 at 10:19</div>
+  <div class="tool">
+    <i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/list-checks.svg)"></i>
+    <i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/paperclip.svg)"></i>
+    <i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/pen-tool.svg)"></i>
+    <i class="ic" style="--i: url(https://cdn.jsdelivr.net/npm/lucide-static@0.460.0/icons/square-pen.svg)"></i>
+  </div>
+  <div class="home"></div>
+</template>
+<script>
+  // Same phone chrome (status bar, Notes nav, date, toolbar) on every slide.
+  const phoneUi = document.getElementById('chrome');
+  document.querySelectorAll('.slide').forEach((s) => s.prepend(phoneUi.content.cloneNode(true)));
+</script>
